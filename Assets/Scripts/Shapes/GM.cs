@@ -6,144 +6,168 @@ using UnityEngine.SceneManagement;
 
 public class GM : MonoBehaviour {
 
-    public GameObject character;
-    public GameObject enemy;
-    public GameObject enemyClone;
-    public GameObject correctEnemy;
-    public GameObject origin;
-    public GameObject heart1;
-    public GameObject heart2;
-    public GameObject heart3;
-    public Sprite blackHeartImage;
+	public GameObject character;
+	public GameObject enemy;
+	public GameObject enemyClone;
+	public GameObject correctEnemy;
+	public GameObject origin;
+	public GameObject heart1;
+	public GameObject heart2;
+	public GameObject heart3;
+	public Sprite blackHeartImage;
 	public Button gameOverButton;
 	public GameObject gameOver;
 	public int livesLeft;
-    public Text scoreText;
-    public int currentScore;
-    public int enemyNeeded;
-    ArrayList cubeSpawn = new ArrayList();
-    public bool hasCorrectAnswer;
-    public int moveAmount;
+	public Text scoreText;
+	public int currentScore;
+	public int enemyNeeded;
+	List<GameObject> enemySpawn;
+	public bool hasCorrectAnswer;
+	public int moveAmount;
 
-    // Use this for initialization
-    void Start() {
+	// Use this for initialization
+	void Start() {
 
-        enemyNeeded = 6;
-        hasCorrectAnswer = false;
-        moveAmount = 0;
-        livesLeft = 3;
-        StartCoroutine(StartGame());
-    }
+		enemySpawn = new List<GameObject>();
+		enemyNeeded = 6;
+		hasCorrectAnswer = false;
+		moveAmount = 0;
+		livesLeft = 3;
+		StartCoroutine(StartGame());
+	}
 
-    // Update is called once per frame
-    void Update() {
+	// Update is called once per frame
+	void Update() {
 
-    }
+	}
 
 
-    IEnumerator StartGame()
-    {
-        while (livesLeft > 0)
-        {
+	IEnumerator StartGame()
+	{
+		while (livesLeft > 0)
+		{
 			yield return new WaitForSeconds(1);
 			PopulateEnemy();
 			yield return new WaitForSeconds(4);
 
 		}
-        
-
-    }
-        void PopulateEnemy()
-        {
-            for (int x = 0; x < enemyNeeded; x++)
-            {
-                if (hasCorrectAnswer == false)
-                {
-                    {
-                        if (Random.Range(0, 6) == 3 || x == enemyNeeded - 1)
-                        {
-
-                            spawnCorrectEnemy();
-
-                        }
-                        else
-                        {
-
-                            spawnEnemy();
-
-                        }
-                    }
-                }
-                else
-                {
-                    spawnEnemy();
-                }
-
-                moveAmount++;
-            }
-        moveAmount = 0;
-        hasCorrectAnswer = false;
-
-        }
-    void spawnEnemy() {
 
 
-        enemyClone = Instantiate(enemy, new Vector3(origin.transform.position.x + moveAmount * 4, origin.transform.position.y, origin.transform.position.z), Quaternion.identity) as GameObject;
-        cubeSpawn.Add(enemyClone);
+	}
+	void PopulateEnemy()
+	{
+		for (int x = 0; x < enemyNeeded; x++)
+		{
+			if (hasCorrectAnswer == false)
+			{
+				{
+					if (Random.Range(0, 6) == 3 || x == enemyNeeded - 1)
+					{
 
-    }
-    void spawnCorrectEnemy()
-    {
+						SpawnCorrectEnemy();
+
+					}
+					else
+					{
+
+						SpawnEnemy();
+
+					}
+				}
+			}
+			else
+			{
+				SpawnEnemy();
+			}
+
+			moveAmount++;
+		}
+		moveAmount = 0;
+		hasCorrectAnswer = false;
+
+	}
+	void SpawnEnemy() {
 
 
-        enemyClone = Instantiate(correctEnemy, new Vector3(origin.transform.position.x + moveAmount * 4, origin.transform.position.y, origin.transform.position.z), Quaternion.identity) as GameObject;
-        cubeSpawn.Add(enemyClone);
-        hasCorrectAnswer = true;
+		enemyClone = Instantiate(enemy, new Vector3(origin.transform.position.x + moveAmount * 4, origin.transform.position.y, origin.transform.position.z), Quaternion.identity) as GameObject;
+		enemySpawn.Add(enemyClone);
 
-    }
-    public void removeLife() {
+	}
+	void SpawnCorrectEnemy()
+	{
 
-        if (livesLeft == 3)
-        {
+		enemyClone = Instantiate(correctEnemy, new Vector3(origin.transform.position.x + moveAmount * 4, origin.transform.position.y, origin.transform.position.z), Quaternion.identity) as GameObject;
+		enemySpawn.Add(enemyClone);
+		hasCorrectAnswer = true;
 
-            heart3.GetComponent<Image>().sprite = blackHeartImage;
+	}
+	public void RemoveLife() {
 
-        }
-        else if (livesLeft == 2)
-        {
+		if (livesLeft == 3)
+		{
 
-            heart2.GetComponent<Image>().sprite = blackHeartImage;
+			heart3.GetComponent<Image>().sprite = blackHeartImage;
 
-        }
-        else {
+		}
+		else if (livesLeft == 2)
+		{
 
-            heart1.GetComponent<Image>().sprite = blackHeartImage;
-			
+			heart2.GetComponent<Image>().sprite = blackHeartImage;
+
+		}
+		else {
+
+			heart1.GetComponent<Image>().sprite = blackHeartImage;
+
 			gameOver.gameObject.SetActive(true);
 			gameOverButton.gameObject.SetActive(true);
 
 		}
 
-        livesLeft--;
+		livesLeft--;
 
 
-    }
+	}
 
-    public void addScore(){
+	public void AddScore() {
 
-        currentScore++;
-        scoreText.text = "" + currentScore;
+		currentScore++;
+		scoreText.text = "" + currentScore;
 
-    }
-    public void resetButton() {
+	}
+	public void ResetButton() {
 
-        StartCoroutine(LevelLoader());
+		StartCoroutine(LevelLoader());
 
-    }
-    IEnumerator LevelLoader()
-    {
-        yield return new WaitForSeconds(0.5f);
-        AsyncOperation async = SceneManager.LoadSceneAsync("MainGame");
-        yield return async;
-    }
+	}
+	IEnumerator LevelLoader()
+	{
+		yield return new WaitForSeconds(0.5f);
+		AsyncOperation async = SceneManager.LoadSceneAsync("MainGame");
+		yield return async;
+	}
+	public void EnemyDestroy(){
+
+		//StartCoroutine(PlayerCollision());
+		for (int i = 0; i < enemySpawn.Count; i++)
+		{
+
+
+			Destroy(enemySpawn[i]);
+		
+		}
+
+	}
+	IEnumerator PlayerCollision() {
+
+		for (int i = 0; i < enemySpawn.Count; i++ ){
+
+			
+			Destroy(enemySpawn[i]);
+			yield return null;
+
+
+		}
+
+	}
 }

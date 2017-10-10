@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CharacterScript : MonoBehaviour {
 
 	public float speed;
 	public bool isHeldDown;
+	public GM GM;
 	
 	
 	public Vector3 playerPos;
@@ -27,19 +29,19 @@ public class CharacterScript : MonoBehaviour {
 		
 	}
 
-	public void moveLeft() {
+	public void MoveLeft() {
 
-		checkButtonHeld();
-		StartCoroutine(isMoving(-1));
-
-	}
-	public void moveRight() {
-
-		checkButtonHeld();
-		StartCoroutine(isMoving(1));
+		CheckButtonHeld();
+		StartCoroutine(IsMoving(-1));
 
 	}
-	IEnumerator isMoving(int direction)
+	public void MoveRight() {
+
+		CheckButtonHeld();
+		StartCoroutine(IsMoving(1));
+
+	}
+	IEnumerator IsMoving(int direction)
 	{
 
 		while (isHeldDown)
@@ -50,7 +52,7 @@ public class CharacterScript : MonoBehaviour {
 			yield return null;
 		}
 	}
-	void checkButtonHeld() {
+	void CheckButtonHeld() {
 
 		if (isHeldDown == true)
 		{
@@ -59,6 +61,22 @@ public class CharacterScript : MonoBehaviour {
 		else
 		{
 			isHeldDown = true;
+		}
+
+
+	}
+	void OnCollisionEnter(Collision col)
+	{
+
+		this.GetComponent<BoxCollider>().enabled = false;
+
+		if (col.gameObject.name == "Enemy") {
+			GM.RemoveLife();
+		}
+		else{
+
+			GM.AddScore();
+
 		}
 
 	}
