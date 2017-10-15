@@ -70,14 +70,19 @@ public class CharacterScript : MonoBehaviour {
 
 		this.GetComponent<BoxCollider>().enabled = false;
 
-		if (col.gameObject.name == "Enemy") {
-			GM.RemoveLife();
+		if (col.gameObject.name == "CorrectWinner(Clone)") {
+			GM.AddScore();
 		}
 		else{
 
-			GM.AddScore();
+			GM.RemoveLife();
 
 		}
+
+	}
+	public void CollisionToggle() {
+
+		this.GetComponent<BoxCollider>().enabled = true;
 
 	}
 
