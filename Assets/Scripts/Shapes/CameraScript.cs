@@ -52,7 +52,7 @@ public class CameraScript : MonoBehaviour {
 
 	void LateUpdate()
 	{
-		fpsCounter.text = "fps : " +  Mathf.FloorToInt(1f / Time.unscaledDeltaTime);
+		//fpsCounter.text = "fps : " +  Mathf.FloorToInt(1f / Time.unscaledDeltaTime);
 		GL.Clear(true, true, Color.black);
 	}
 }
