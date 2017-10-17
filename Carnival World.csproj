@@ -93,6 +93,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Menu\CameraMenuScript.cs" />
     <Compile Include="Assets\Scripts\Menu\CarnivalWorldBannerScript.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuAnimationManager.cs" />
     <Compile Include="Assets\Scripts\Shapes\CameraScript.cs" />
