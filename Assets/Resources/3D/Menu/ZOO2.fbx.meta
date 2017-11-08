@@ -1,0 +1,159 @@
+fileFormatVersion: 2
+guid: f0ccf754dd3a745468881c010d45558c
+timeCreated: 1508995306
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cube
+    100002: fence
+    100004: Plane
+    100006: stone-slab
+    100008: stone-slab small
+    100010: stone-slab small 2
+    100012: stone-slab.001
+    100014: stone-slab.002
+    100016: stone-slab.003
+    100018: Tree 2
+    100020: Tree 3 small
+    100022: Tree 3 small.001
+    100024: Wood-log small
+    100026: Wood-log small.001
+    100028: Wood-log small.002
+    100030: //RootNode
+    100032: ZooBed
+    400000: Cube
+    400002: fence
+    400004: Plane
+    400006: stone-slab
+    400008: stone-slab small
+    400010: stone-slab small 2
+    400012: stone-slab.001
+    400014: stone-slab.002
+    400016: stone-slab.003
+    400018: Tree 2
+    400020: Tree 3 small
+    400022: Tree 3 small.001
+    400024: Wood-log small
+    400026: Wood-log small.001
+    400028: Wood-log small.002
+    400030: //RootNode
+    400032: ZooBed
+    2300000: Cube
+    2300002: fence
+    2300004: Plane
+    2300006: stone-slab
+    2300008: stone-slab small
+    2300010: stone-slab small 2
+    2300012: stone-slab.001
+    2300014: stone-slab.002
+    2300016: stone-slab.003
+    2300018: Tree 2
+    2300020: Tree 3 small
+    2300022: Tree 3 small.001
+    2300024: Wood-log small
+    2300026: Wood-log small.001
+    2300028: Wood-log small.002
+    2300030: ZooBed
+    3300000: Cube
+    3300002: fence
+    3300004: Plane
+    3300006: stone-slab
+    3300008: stone-slab small
+    3300010: stone-slab small 2
+    3300012: stone-slab.001
+    3300014: stone-slab.002
+    3300016: stone-slab.003
+    3300018: Tree 2
+    3300020: Tree 3 small
+    3300022: Tree 3 small.001
+    3300024: Wood-log small
+    3300026: Wood-log small.001
+    3300028: Wood-log small.002
+    3300030: ZooBed
+    4300000: stone-slab.002
+    4300002: Cube
+    4300004: fence
+    4300006: stone-slab.003
+    4300008: stone-slab
+    4300010: Wood-log small
+    4300012: stone-slab small
+    4300014: Tree 3 small
+    4300016: Tree 2
+    4300018: stone-slab small 2
+    4300020: Plane
+    4300022: ZooBed
+    4300024: stone-slab.001
+    4300026: Tree 3 small.001
+    4300028: Wood-log small.001
+    4300030: Wood-log small.002
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
