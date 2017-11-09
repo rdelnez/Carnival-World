@@ -102,6 +102,8 @@
     <Compile Include="Assets\Scripts\Shapes\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\Shapes\GM.cs" />
     <Compile Include="Assets\Scripts\Shapes\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\Static\SVM_Script.cs" />
+    <Compile Include="Assets\Scripts\Static\SoundManagerScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
