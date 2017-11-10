@@ -43,9 +43,9 @@ public class SoundManagerScript : MonoBehaviour
 		audioButtonImage = audioButton.GetComponent<Image>();
 	}
 
-	public void Play_Menu_SFX()
+	public void Play_Menu_SFX(string  tempOneShot)
 	{
-		FX_Player.clip = Resources.Load<AudioClip>("SoundEffects/SFX/hit");
+		FX_Player.clip = Resources.Load<AudioClip>("SoundEffects/SFX/" + tempOneShot);
 		FX_Player.Play();
 		//FX_Player.PlayOneShot (Resources.Load<AudioClip> ("Voices/Set" + setNum + "/" + fileName + ballNum));
 	}
