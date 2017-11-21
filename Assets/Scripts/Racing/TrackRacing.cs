@@ -29,11 +29,11 @@ public class TrackRacing : MonoBehaviour {
             RacingTrackOne.transform.Translate(0 * Time.deltaTime, speedY * Time.deltaTime, 0);
             RacingTrackTwo.transform.Translate(0 * Time.deltaTime, speedY * Time.deltaTime, 0);
 
-            if (RacingTrackOne.transform.position.y <= -31f)
+            if (RacingTrackOne.transform.position.y <= -22.7f)
 
             {
                
-                RacingTrackOne.transform.position = new Vector3(0, 31, 0);
+                RacingTrackOne.transform.position = new Vector3(0, 22.7f, 0);
                 
                 yield return null;
 
@@ -41,12 +41,12 @@ public class TrackRacing : MonoBehaviour {
 
 
 
-            if (RacingTrackTwo.transform.position.y <= -31f)
+            if (RacingTrackTwo.transform.position.y <= -22.7f)
 
 
             {
                 
-                RacingTrackTwo.transform.position = new Vector3(0, 31, 0);
+                RacingTrackTwo.transform.position = new Vector3(0, 22.7f, 0);
                 
                 yield return null;
             }

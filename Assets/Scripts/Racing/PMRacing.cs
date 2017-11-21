@@ -18,9 +18,9 @@ public class PMRacing : MonoBehaviour {
     {
         xSpeed = 4f;
         xxSpeed = -4f;
-        Lane3 = 4f;
+        Lane3 = 3.18f;
         Lane2 = 0f;
-        Lane1 = -4f;
+        Lane1 = -3.18f;
     }
 
     public void MoveRight()
