@@ -31,7 +31,7 @@ public class GMRacing : MonoBehaviour {
         lives = 5;
         checkpoint = 100;
         score = 0;
-        speedY = -3f;
+        speedY = -1.5f;
         MoveToY = -100;
         StartCoroutine("MoveGameObjects");
         num1 = (Random.Range(1, 9));
@@ -57,9 +57,9 @@ public class GMRacing : MonoBehaviour {
 
             {
                 
-                GerryCan.transform.position = new Vector3(0, 32.8f, -4);
-                GerryCan2.transform.position = new Vector3(0, 32.8f, -4);
-                GerryCan3.transform.position = new Vector3(0, 32.8f, -4);
+                GerryCan.transform.position = new Vector3(-3, 50f, -4);
+                GerryCan2.transform.position = new Vector3(0, 50f, -4);
+                GerryCan3.transform.position = new Vector3(3, 50f, -4);
                 GerryCan.gameObject.SetActive(true);
                 GerryCan2.gameObject.SetActive(true);
                 GerryCan3.gameObject.SetActive(true);
