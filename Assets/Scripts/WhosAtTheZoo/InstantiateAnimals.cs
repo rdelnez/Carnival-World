@@ -37,6 +37,9 @@ public class InstantiateAnimals : MonoBehaviour {
     public Text WrongAnswer;
     public Text WrongAnswer2;
     public GameObject CurrentAnimal;
+    public GameObject GAMEOVER;
+    public int totalScore;
+    public int lives;
     
 
 
@@ -44,6 +47,9 @@ public class InstantiateAnimals : MonoBehaviour {
     // Use this for initialization
     void Start() {
         // AnimalPrefabClone = Instantiate(AnimalPrefab, transform.position, Quaternion.identity) as GameObject;
+        lives = 5;
+        totalScore = 0;
+
         prefabList.Add(Prefab1);
         prefabList.Add(Prefab2);
         prefabList.Add(Prefab3);
@@ -267,6 +273,239 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Lion";
             WrongAnswer.text = "Bat";
             WrongAnswer2.text = "Dog";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 1)
+        {
+
+            RightAnswer.text = "Beaver";
+            WrongAnswer.text = "Otter";
+            WrongAnswer2.text = "Lynx";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 2)
+        {
+
+            RightAnswer.text = "Beetle";
+            WrongAnswer.text = "Fly";
+            WrongAnswer2.text = "Wasp";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 3)
+        {
+
+            RightAnswer.text = "Bird";
+            WrongAnswer.text = "Dinosaur";
+            WrongAnswer2.text = "Emu";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 4)
+        {
+
+            RightAnswer.text = "Black Bear";
+            WrongAnswer.text = "Brown Bear";
+            WrongAnswer2.text = "Polar Bear";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 5)
+        {
+
+            RightAnswer.text = "Brown Bear";
+            WrongAnswer.text = "Rat";
+            WrongAnswer2.text = "Snake";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 6)
+        {
+
+            RightAnswer.text = "Buffalo";
+            WrongAnswer.text = "Aligator";
+            WrongAnswer2.text = "Zebra";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 7)
+        {
+
+            RightAnswer.text = "BumbleBee";
+            WrongAnswer.text = "Wasp";
+            WrongAnswer2.text = "Dragonfly";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 8)
+        {
+
+            RightAnswer.text = "Butterfly";
+            WrongAnswer.text = "Dragon";
+            WrongAnswer2.text = "Lion";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 9)
+        {
+
+            RightAnswer.text = "Chicken";
+            WrongAnswer.text = "Bird";
+            WrongAnswer2.text = "Cow";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 10)
+        {
+
+            RightAnswer.text = "Cow";
+            WrongAnswer.text = "Duck";
+            WrongAnswer2.text = "Horse";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 11)
+        {
+
+            RightAnswer.text = "Coyote";
+            WrongAnswer.text = "Buffalo";
+            WrongAnswer2.text = "Dalmation";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 12)
+        {
+
+            RightAnswer.text = "Crab";
+            WrongAnswer.text = "Cow";
+            WrongAnswer2.text = "Ladybug";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 13)
+        {
+
+            RightAnswer.text = "Dalmation";
+            WrongAnswer.text = "Coyote";
+            WrongAnswer2.text = "Brown Bear";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 14)
+        {
+
+            RightAnswer.text = "Donkey";
+            WrongAnswer.text = "Elephant";
+            WrongAnswer2.text = "Hedgehog";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 15)
+        {
+
+            RightAnswer.text = "Dragonfly";
+            WrongAnswer.text = "Bird";
+            WrongAnswer2.text = "Beaver";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 16)
+        {
+
+            RightAnswer.text = "Duck";
+            WrongAnswer.text = "BumbleBee";
+            WrongAnswer2.text = "Black Bear";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 17)
+        {
+
+            RightAnswer.text = "Dugong";
+            WrongAnswer.text = "Seal";
+            WrongAnswer2.text = "Lion";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 18)
+        {
+
+            RightAnswer.text = "Elephant";
+            WrongAnswer.text = "Whale";
+            WrongAnswer2.text = "Donkey";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 19)
+        {
+
+            RightAnswer.text = "Giraffe";
+            WrongAnswer.text = "Duck";
+            WrongAnswer2.text = "Crab";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 20)
+        {
+
+            RightAnswer.text = "Hamster";
+            WrongAnswer.text = "Donkey";
+            WrongAnswer2.text = "Hedgehog";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 21)
+        {
+
+            RightAnswer.text = "Hedgehog";
+            WrongAnswer.text = "Hamster";
+            WrongAnswer2.text = "Ladybug";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 22)
+        {
+
+            RightAnswer.text = "Horse";
+            WrongAnswer.text = "Cow";
+            WrongAnswer2.text = "Donkey";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 23)
+        {
+
+            RightAnswer.text = "Ladybug";
+            WrongAnswer.text = "Fly";
+            WrongAnswer2.text = "Dragonfly";
+            totalScore = totalScore - 50;
+            lives = lives - 1;
+        }
+        else if (prefabIndex == 24)
+        {
+
+            RightAnswer.text = "";
+            WrongAnswer.text = "";
+            WrongAnswer2.text = "";
+        }
+
+    }
+    public void animalRightAnswer()
+    {
+
+        Destroy(CurrentAnimal);
+        int prefabIndex = UnityEngine.Random.Range(0, 24);
+        CurrentAnimal = Instantiate(prefabList[prefabIndex]) as GameObject;
+        if (prefabIndex == 0)
+        {
+
+            RightAnswer.text = "Lion";
+            WrongAnswer.text = "Bat";
+            WrongAnswer2.text = "Dog";
+            totalScore = totalScore + 100;
+            
 
 
         }
@@ -276,6 +515,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Beaver";
             WrongAnswer.text = "Otter";
             WrongAnswer2.text = "Lynx";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 2)
         {
@@ -283,6 +523,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Beetle";
             WrongAnswer.text = "Fly";
             WrongAnswer2.text = "Wasp";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 3)
         {
@@ -290,6 +531,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Bird";
             WrongAnswer.text = "Dinosaur";
             WrongAnswer2.text = "Emu";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 4)
         {
@@ -297,6 +539,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Black Bear";
             WrongAnswer.text = "Brown Bear";
             WrongAnswer2.text = "Polar Bear";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 5)
         {
@@ -304,6 +547,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Brown Bear";
             WrongAnswer.text = "Rat";
             WrongAnswer2.text = "Snake";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 6)
         {
@@ -311,6 +555,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Buffalo";
             WrongAnswer.text = "Aligator";
             WrongAnswer2.text = "Zebra";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 7)
         {
@@ -318,6 +563,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "BumbleBee";
             WrongAnswer.text = "Wasp";
             WrongAnswer2.text = "Dragonfly";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 8)
         {
@@ -325,6 +571,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Butterfly";
             WrongAnswer.text = "Dragon";
             WrongAnswer2.text = "Lion";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 9)
         {
@@ -332,6 +579,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Chicken";
             WrongAnswer.text = "Bird";
             WrongAnswer2.text = "Cow";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 10)
         {
@@ -339,6 +587,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Cow";
             WrongAnswer.text = "Duck";
             WrongAnswer2.text = "Horse";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 11)
         {
@@ -346,6 +595,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Coyote";
             WrongAnswer.text = "Buffalo";
             WrongAnswer2.text = "Dalmation";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 12)
         {
@@ -353,6 +603,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Crab";
             WrongAnswer.text = "Cow";
             WrongAnswer2.text = "Ladybug";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 13)
         {
@@ -360,6 +611,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Dalmation";
             WrongAnswer.text = "Coyote";
             WrongAnswer2.text = "Brown Bear";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 14)
         {
@@ -367,6 +619,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Donkey";
             WrongAnswer.text = "Elephant";
             WrongAnswer2.text = "Hedgehog";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 15)
         {
@@ -374,6 +627,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Dragonfly";
             WrongAnswer.text = "Bird";
             WrongAnswer2.text = "Beaver";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 16)
         {
@@ -381,6 +635,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Duck";
             WrongAnswer.text = "BumbleBee";
             WrongAnswer2.text = "Black Bear";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 17)
         {
@@ -388,6 +643,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Dugong";
             WrongAnswer.text = "Seal";
             WrongAnswer2.text = "Lion";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 18)
         {
@@ -395,6 +651,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Elephant";
             WrongAnswer.text = "Whale";
             WrongAnswer2.text = "Donkey";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 19)
         {
@@ -402,6 +659,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Giraffe";
             WrongAnswer.text = "Duck";
             WrongAnswer2.text = "Crab";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 20)
         {
@@ -409,6 +667,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Hamster";
             WrongAnswer.text = "Donkey";
             WrongAnswer2.text = "Hedgehog";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 21)
         {
@@ -416,6 +675,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Hedgehog";
             WrongAnswer.text = "Hamster";
             WrongAnswer2.text = "Ladybug";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 22)
         {
@@ -423,6 +683,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Horse";
             WrongAnswer.text = "Cow";
             WrongAnswer2.text = "Donkey";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 23)
         {
@@ -430,6 +691,7 @@ public class InstantiateAnimals : MonoBehaviour {
             RightAnswer.text = "Ladybug";
             WrongAnswer.text = "Fly";
             WrongAnswer2.text = "Dragonfly";
+            totalScore = totalScore + 100;
         }
         else if (prefabIndex == 24)
         {
@@ -442,9 +704,12 @@ public class InstantiateAnimals : MonoBehaviour {
     }
 
 
-
     // Update is called once per frame
     void Update () {
-		
+        if (lives == 0)
+        {
+            Destroy(CurrentAnimal);
+            GAMEOVER.SetActive(true);
+        }
 	}
 }
