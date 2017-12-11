@@ -40,6 +40,9 @@ public class InstantiateAnimals : MonoBehaviour {
     public GameObject GAMEOVER;
     public int totalScore;
     public int lives;
+    public GameObject Button1;
+    public GameObject Button2;
+    public GameObject Button3;
     
 
 
