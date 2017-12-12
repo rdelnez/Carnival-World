@@ -43,13 +43,22 @@ public class InstantiateAnimals : MonoBehaviour {
     public GameObject Button1;
     public GameObject Button2;
     public GameObject Button3;
+    public Vector3 Pos1 = new Vector3(-170, -105, 0);
+    public Vector3 Pos2 = new Vector3(170, -105, 0);
+    public Vector3 Pos3 = new Vector3(0, -105, 0);
+
+
+
+    private void Awake()
+    {
+        Pos1 = new Vector3(-170, -105, 0);
+        Pos2 = new Vector3(170, -105, 0);
+        Pos3 = new Vector3(0, -105, 0);
+        
+    }
     
-
-
-
-    // Use this for initialization
     void Start() {
-        // AnimalPrefabClone = Instantiate(AnimalPrefab, transform.position, Quaternion.identity) as GameObject;
+       
         lives = 5;
         totalScore = 0;
 
@@ -82,6 +91,32 @@ public class InstantiateAnimals : MonoBehaviour {
 
         int prefabIndex = UnityEngine.Random.Range(0, 24);
         CurrentAnimal = Instantiate(prefabList[prefabIndex]) as GameObject;
+        int PosIndex = UnityEngine.Random.Range(0, 4);
+        if (PosIndex == 0)
+        {
+            Button1.transform.localPosition  = new Vector3(-170, -105, 0);
+            Button2.transform.localPosition = new Vector3(170, -105, 0);
+            Button3.transform.localPosition = new Vector3(0, -105, 0);
+        }
+        if (PosIndex == 1)
+        {
+            Button3.transform.localPosition = new Vector3(-170, -105, 0);
+            Button1.transform.localPosition = new Vector3(170, -105, 0);
+            Button2.transform.localPosition = new Vector3(0, -105, 0);
+
+        }
+        if (PosIndex == 2)
+        {
+            Button2.transform.localPosition = new Vector3(-170, -105, 0);
+            Button3.transform.localPosition = new Vector3(170, -105, 0);
+            Button1.transform.localPosition = new Vector3(0, -105, 0);
+        }
+        if (PosIndex == 3)
+        {
+            Button1.transform.localPosition = new Vector3(-170, -105, 0);
+            Button3.transform.localPosition = new Vector3(170, -105, 0);
+            Button2.transform.localPosition = new Vector3(0, -105, 0);
+        }
 
         if (prefabIndex == 0)
         {
@@ -270,6 +305,34 @@ public class InstantiateAnimals : MonoBehaviour {
         Destroy(CurrentAnimal);
         int prefabIndex = UnityEngine.Random.Range(0, 24);
         CurrentAnimal = Instantiate(prefabList[prefabIndex]) as GameObject;
+        int PosIndex = UnityEngine.Random.Range(0, 4);
+
+        if (PosIndex == 0)
+        {
+            Button1.transform.localPosition = new Vector3(-170, -105, 0);
+            Button2.transform.localPosition = new Vector3(170, -105, 0);
+            Button3.transform.localPosition = new Vector3(0, -105, 0);
+        }
+        if (PosIndex == 1)
+        {
+            Button3.transform.localPosition = new Vector3(-170, -105, 0);
+            Button1.transform.localPosition = new Vector3(170, -105, 0);
+            Button2.transform.localPosition = new Vector3(0, -105, 0);
+
+        }
+        if (PosIndex == 2)
+        {
+            Button2.transform.localPosition = new Vector3(-170, -105, 0);
+            Button3.transform.localPosition = new Vector3(170, -105, 0);
+            Button1.transform.localPosition = new Vector3(0, -105, 0);
+        }
+        if (PosIndex == 3)
+        {
+            Button1.transform.localPosition = new Vector3(-170, -105, 0);
+            Button3.transform.localPosition = new Vector3(170, -105, 0);
+            Button2.transform.localPosition = new Vector3(0, -105, 0);
+        }
+
         if (prefabIndex == 0)
         {
 
@@ -501,6 +564,33 @@ public class InstantiateAnimals : MonoBehaviour {
         Destroy(CurrentAnimal);
         int prefabIndex = UnityEngine.Random.Range(0, 24);
         CurrentAnimal = Instantiate(prefabList[prefabIndex]) as GameObject;
+        int PosIndex = UnityEngine.Random.Range(0, 4);
+        if (PosIndex == 0)
+        {
+            Button1.transform.localPosition = new Vector3(-170, -105, 0);
+            Button2.transform.localPosition = new Vector3(170, -105, 0);
+            Button3.transform.localPosition = new Vector3(0, -105, 0);
+        }
+        if (PosIndex == 1)
+        {
+            Button3.transform.localPosition = new Vector3(-170, -105, 0);
+            Button1.transform.localPosition = new Vector3(170, -105, 0);
+            Button2.transform.localPosition = new Vector3(0, -105, 0);
+
+        }
+        if (PosIndex == 2)
+        {
+            Button2.transform.localPosition = new Vector3(-170, -105, 0);
+            Button3.transform.localPosition = new Vector3(170, -105, 0);
+            Button1.transform.localPosition = new Vector3(0, -105, 0);
+        }
+        if (PosIndex == 3)
+        {
+            Button1.transform.localPosition = new Vector3(-170, -105, 0);
+            Button3.transform.localPosition = new Vector3(170, -105, 0);
+            Button2.transform.localPosition = new Vector3(0, -105, 0);
+        }
+
         if (prefabIndex == 0)
         {
 
@@ -707,12 +797,15 @@ public class InstantiateAnimals : MonoBehaviour {
     }
 
 
-    // Update is called once per frame
+  
     void Update () {
-        if (lives == 0)
+        if (lives <= 0)
         {
             Destroy(CurrentAnimal);
             GAMEOVER.SetActive(true);
+            Button1.SetActive(false);
+            Button2.SetActive(false);
+            Button3.SetActive(false);
         }
 	}
 }
