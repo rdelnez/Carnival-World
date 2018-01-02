@@ -11,6 +11,9 @@ public class GMRacing : MonoBehaviour {
     public GameObject GerryCan;
     public GameObject GerryCan2;
     public GameObject GerryCan3;
+	public bool isGerryCanAvailable;
+
+	
    // public static GMRacing instance = null;
     //public Sprite LeftNum;
     //public Sprite RightNum;
@@ -36,15 +39,16 @@ public class GMRacing : MonoBehaviour {
 
     void Awake()
     {
-       // if (instance == null)
-       // {
-       //     instance = this;
-       // }
-      //  else if (instance != this)
-       // {
-      //      Destroy(gameObject);
-      //  }
-      //  Setup();  
+		// if (instance == null)
+		// {
+		//     instance = this;
+		// }
+		//  else if (instance != this)
+		// {
+		//      Destroy(gameObject);
+		//  }
+		//  Setup();  
+		isGerryCanAvailable = true;
     }
 
     public void Setup()

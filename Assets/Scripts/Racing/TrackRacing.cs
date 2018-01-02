@@ -22,7 +22,7 @@ public class TrackRacing : MonoBehaviour {
     {
         while (transform.position.y > moveToThisY)
         {
-			Debug.Log(Time.deltaTime + " Track");
+			//Debug.Log(Time.deltaTime + " Track");
 			transform.Translate(0 * Time.deltaTime, speedY * Time.deltaTime, 0);
   
             if (transform.position.y <= -22.7f)
