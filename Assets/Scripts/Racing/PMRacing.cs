@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PMRacing : MonoBehaviour {
 
     public GameObject MonsterTruck;
+	public Transform cameraTransform;
     public float xSpeed;
     public float xxSpeed;
     public float Lane3;
@@ -78,21 +79,34 @@ public class PMRacing : MonoBehaviour {
         while (MonsterTruck.transform.position.x < NextPos)
         {
             MonsterTruck.transform.Translate(xSpeed * Time.deltaTime, 0, 0);
+			cameraTransform.Translate(xSpeed * Time.deltaTime, 0, 0);
 
-            yield return null;
+			yield return null;
         }
-    }
+		cameraTransform.position = new Vector3(NextPos, cameraTransform.position.y, cameraTransform.position.z);
+		Vector3 tempVec = MonsterTruck.transform.position;
+		tempVec.x = NextPos;
+		MonsterTruck.transform.position = tempVec;
+
+
+
+	}
     IEnumerator MoveCarLeft()
     {
         while (MonsterTruck.transform.position.x > NextPos)
         {
             MonsterTruck.transform.Translate(xxSpeed * Time.deltaTime, 0, 0);
-
-            yield return null;
+			cameraTransform.Translate(xxSpeed * Time.deltaTime, 0, 0);
+			yield return null;
         }
-    }
-    // Update is called once per frame
-    void Update () {
+		cameraTransform.position = new Vector3(NextPos, cameraTransform.position.y, cameraTransform.position.z);
+		Vector3 tempVec = MonsterTruck.transform.position;
+		tempVec.x = NextPos;
+		MonsterTruck.transform.position = tempVec;
+
+	}
+	// Update is called once per frame
+	void Update () {
 		
 	}
 }
