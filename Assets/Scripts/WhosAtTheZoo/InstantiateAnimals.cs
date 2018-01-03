@@ -7,9 +7,8 @@ using UnityEngine.UI;
 public class InstantiateAnimals : MonoBehaviour {
     //public GameObject AnimalPrefab;
     //GameObject AnimalPrefabClone;
-    List<Object> prefabList = new List<Object>();
-
-    public Object Prefab1;
+    public List<Object> prefabList = new List<Object>();
+	public Object Prefab1;
     public Object Prefab2;
     public Object Prefab3;
     public Object Prefab4;
@@ -33,7 +32,19 @@ public class InstantiateAnimals : MonoBehaviour {
     public Object Prefab22;
     public Object Prefab23;
     public Object Prefab24;
-    public Text RightAnswer;
+
+	public List<GameObject> buttonList;
+	
+
+	public List<string> tempAnimalNameList = new List<string>();
+	public List<string> tempAnimalCorrectAnswerList = new List<string>();
+	public string correctAnswer;
+	public string secondAnswer;
+	public bool buttonTextDone;
+	public string buttonPressed;
+	public bool isGameSetUp;
+
+	public Text RightAnswer;
     public Text WrongAnswer;
     public Text WrongAnswer2;
     public GameObject CurrentAnimal;
@@ -54,8 +65,10 @@ public class InstantiateAnimals : MonoBehaviour {
         Pos1 = new Vector3(-170, -105, 0);
         Pos2 = new Vector3(170, -105, 0);
         Pos3 = new Vector3(0, -105, 0);
-        
-    }
+		buttonTextDone = false;
+		buttonPressed = "none";
+		isGameSetUp = false;
+	}
     
     void Start() {
        
@@ -87,717 +100,170 @@ public class InstantiateAnimals : MonoBehaviour {
         prefabList.Add(Prefab23);
         prefabList.Add(Prefab24);
 
+		tempAnimalCorrectAnswerList.Add("Lion");
+		tempAnimalCorrectAnswerList.Add("Beaver");
+		tempAnimalCorrectAnswerList.Add("Beetle");
+		tempAnimalCorrectAnswerList.Add("Bird");
+		tempAnimalCorrectAnswerList.Add("Black Bear");
+		tempAnimalCorrectAnswerList.Add("Brown Bear");
+		tempAnimalCorrectAnswerList.Add("Buffalo");
+		tempAnimalCorrectAnswerList.Add("Bumble Bee");
+		tempAnimalCorrectAnswerList.Add("Butterfly");
+		tempAnimalCorrectAnswerList.Add("Chicken");
+		tempAnimalCorrectAnswerList.Add("Cow");
+		tempAnimalCorrectAnswerList.Add("Cayote");
+		tempAnimalCorrectAnswerList.Add("Crab");
+		tempAnimalCorrectAnswerList.Add("Dalmatian");
+		tempAnimalCorrectAnswerList.Add("Donkey");
+		tempAnimalCorrectAnswerList.Add("Dragonfly");
+		tempAnimalCorrectAnswerList.Add("Duck");
+		tempAnimalCorrectAnswerList.Add("Dugong");
+		tempAnimalCorrectAnswerList.Add("Elephant");
+		tempAnimalCorrectAnswerList.Add("Giraffe");
+		tempAnimalCorrectAnswerList.Add("Hamster");
+		tempAnimalCorrectAnswerList.Add("Hedgehog");
+		tempAnimalCorrectAnswerList.Add("Horse");
+		tempAnimalCorrectAnswerList.Add("Lady Bug");
+
+		tempAnimalNameList.Add("Lion");
+		tempAnimalNameList.Add("Cat");
+		tempAnimalNameList.Add("Bird");
+		tempAnimalNameList.Add("Beaver");
+		tempAnimalNameList.Add("Beetle");
+		tempAnimalNameList.Add("Bird");
+		tempAnimalNameList.Add("Black Bear");
+		tempAnimalNameList.Add("Brown Bear");
+		tempAnimalNameList.Add("Buffalo");
+		tempAnimalNameList.Add("Bumble Bee");
+		tempAnimalNameList.Add("Butterfly");
+		tempAnimalNameList.Add("Chicken");
+		tempAnimalNameList.Add("Cow");
+		tempAnimalNameList.Add("Cayote");
+		tempAnimalNameList.Add("Crab");
+		tempAnimalNameList.Add("Dalmatian");
+		tempAnimalNameList.Add("Donkey");
+		tempAnimalNameList.Add("Dragonfly");
+		tempAnimalNameList.Add("Duck");
+		tempAnimalNameList.Add("Dugong");
+
+		buttonList = new List<GameObject>();
+		ResetButtonList();
+		
+
+		animalAnswer("");
+		
+	}
+
+	public void ButtonChange(GameObject but1, GameObject but2, GameObject but3) {
+		int PosIndex = UnityEngine.Random.Range(0, 4);
+		but1.transform.localPosition = new Vector3(-170, -105, 0);
+		but2.transform.localPosition = new Vector3(170, -105, 0);
+		but3.transform.localPosition = new Vector3(0, -105, 0);
+	}
+
+	public void ResetButtonList() {
+		buttonList.Clear();
+		buttonList.Add(Button1);
+		buttonList.Add(Button2);
+		buttonList.Add(Button3);
+		
+	}
+
+	public void ChangeButtonText() {
+
+		int PosIndex;
+		int prefabIndex;
+		buttonTextDone = false;
+
+		while (!buttonTextDone)
+		{
+			
+			PosIndex = Random.Range(0, buttonList.Count);
+			Debug.Log(tempAnimalNameList[PosIndex] != correctAnswer && tempAnimalNameList[PosIndex] != secondAnswer);
+			prefabIndex = Random.Range(0, tempAnimalNameList.Count);
+
+			if (tempAnimalNameList[prefabIndex] != correctAnswer && tempAnimalNameList[prefabIndex] != secondAnswer)
+			{
+				Debug.Log(tempAnimalNameList[PosIndex]);
+				Debug.Log("Entered if");
+				buttonList[PosIndex].GetComponentInChildren<Text>().text = tempAnimalNameList[prefabIndex];
+				secondAnswer = tempAnimalNameList[prefabIndex];
+				buttonList.RemoveAt(PosIndex);
+				buttonTextDone = true;
+			}
+		}
+		
+	}
+
+	public void animalAnswer(string test)
+	{
+
+		if (buttonPressed == test && isGameSetUp)
+		{
+			//Start Put adding score here
+			Debug.Log("Correct Answer");
 
+		}
+		else if(isGameSetUp)
+		{
+			//Start Put reducing score here
+			Debug.Log("Wrong Answer");
+		}
 
-        int prefabIndex = UnityEngine.Random.Range(0, 24);
-        CurrentAnimal = Instantiate(prefabList[prefabIndex]) as GameObject;
-        int PosIndex = UnityEngine.Random.Range(0, 4);
-        if (PosIndex == 0)
-        {
-            Button1.transform.localPosition  = new Vector3(-170, -105, 0);
-            Button2.transform.localPosition = new Vector3(170, -105, 0);
-            Button3.transform.localPosition = new Vector3(0, -105, 0);
-        }
-        if (PosIndex == 1)
-        {
-            Button3.transform.localPosition = new Vector3(-170, -105, 0);
-            Button1.transform.localPosition = new Vector3(170, -105, 0);
-            Button2.transform.localPosition = new Vector3(0, -105, 0);
+		isGameSetUp = true;
 
-        }
-        if (PosIndex == 2)
-        {
-            Button2.transform.localPosition = new Vector3(-170, -105, 0);
-            Button3.transform.localPosition = new Vector3(170, -105, 0);
-            Button1.transform.localPosition = new Vector3(0, -105, 0);
-        }
-        if (PosIndex == 3)
-        {
-            Button1.transform.localPosition = new Vector3(-170, -105, 0);
-            Button3.transform.localPosition = new Vector3(170, -105, 0);
-            Button2.transform.localPosition = new Vector3(0, -105, 0);
-        }
+		ResetButtonList();
 
-        if (prefabIndex == 0)
-        {
-            
-            RightAnswer.text = "Lion";
-            WrongAnswer.text = "Bat";
-            WrongAnswer2.text = "Dog";
+		Destroy(CurrentAnimal);
+		int prefabIndex = UnityEngine.Random.Range(0, prefabList.Count);
+		CurrentAnimal = Instantiate(prefabList[prefabIndex]) as GameObject;
+		int PosIndex = UnityEngine.Random.Range(0, 4);
+		
+		PosIndex = Random.Range(0, buttonList.Count);
+		buttonList[PosIndex].GetComponentInChildren<Text>().text = tempAnimalCorrectAnswerList[prefabIndex];
+		if (PosIndex == 0) {
+			buttonPressed = "Button1";
+		}
+		else if (PosIndex == 1)
+		{
+			buttonPressed = "Button2";
+		}
+		else if (PosIndex == 2)
+		{
+			buttonPressed = "Button3";
+		}
+		correctAnswer = tempAnimalCorrectAnswerList[prefabIndex];
+		buttonList.RemoveAt(PosIndex);
 
+		prefabList.RemoveAt(prefabIndex);
+		tempAnimalCorrectAnswerList.RemoveAt(prefabIndex);
 
-        }
-        else if (prefabIndex == 1)
-        {
-            
-            RightAnswer.text = "Beaver";
-            WrongAnswer.text = "Otter";
-            WrongAnswer2.text = "Lynx";
-        }
-        else if (prefabIndex == 2)
-        {
-            
-            RightAnswer.text = "Beetle";
-            WrongAnswer.text = "Fly";
-            WrongAnswer2.text = "Wasp";
-        }
-        else if (prefabIndex == 3)
-        {
-            
-            RightAnswer.text = "Bird";
-            WrongAnswer.text = "Dinosaur";
-            WrongAnswer2.text = "Emu";
-        }
-        else if (prefabIndex == 4)
-        {
-            
-            RightAnswer.text = "Black Bear";
-            WrongAnswer.text = "Brown Bear";
-            WrongAnswer2.text = "Polar Bear";
-        }
-        else if (prefabIndex == 5)
-        {
-            
-            RightAnswer.text = "Brown Bear";
-            WrongAnswer.text = "Rat";
-            WrongAnswer2.text = "Snake";
-        }
-        else if (prefabIndex == 6)
-        {
-            
-            RightAnswer.text = "Buffalo";
-            WrongAnswer.text = "Aligator";
-            WrongAnswer2.text = "Zebra";
-        }
-        else if (prefabIndex == 7)
-        {
-            
-            RightAnswer.text = "BumbleBee";
-            WrongAnswer.text = "Wasp";
-            WrongAnswer2.text = "Dragonfly";
-        }
-        else if (prefabIndex == 8)
-        {
-            
-            RightAnswer.text = "Butterfly";
-            WrongAnswer.text = "Dragon";
-            WrongAnswer2.text = "Lion";
-        }
-        else if (prefabIndex == 9)
-        {
-            
-            RightAnswer.text = "Chicken";
-            WrongAnswer.text = "Bird";
-            WrongAnswer2.text = "Cow";
-        }
-        else if (prefabIndex == 10)
-        {
-            
-            RightAnswer.text = "Cow";
-            WrongAnswer.text = "Duck";
-            WrongAnswer2.text = "Horse";
-        }
-        else if (prefabIndex == 11)
-        {
-            
-            RightAnswer.text = "Coyote";
-            WrongAnswer.text = "Buffalo";
-            WrongAnswer2.text = "Dalmation";
-        }
-        else if (prefabIndex == 12)
-        {
-            
-            RightAnswer.text = "Crab";
-            WrongAnswer.text = "Cow";
-            WrongAnswer2.text = "Ladybug";
-        }
-        else if (prefabIndex == 13)
-        {
-            
-            RightAnswer.text = "Dalmation";
-            WrongAnswer.text = "Coyote";
-            WrongAnswer2.text = "Brown Bear";
-        }
-        else if (prefabIndex == 14)
-        {
-            
-            RightAnswer.text = "Donkey";
-            WrongAnswer.text = "Elephant";
-            WrongAnswer2.text = "Hedgehog";
-        }
-        else if (prefabIndex == 15)
-        {
-            
-            RightAnswer.text = "Dragonfly";
-            WrongAnswer.text = "Bird";
-            WrongAnswer2.text = "Beaver";
-        }
-        else if (prefabIndex == 16)
-        {
-            
-            RightAnswer.text = "Duck";
-            WrongAnswer.text = "BumbleBee";
-            WrongAnswer2.text = "Black Bear";
-        }
-        else if (prefabIndex == 17)
-        {
-            
-            RightAnswer.text = "Dugong";
-            WrongAnswer.text = "Seal";
-            WrongAnswer2.text = "Lion";
-        }
-        else if (prefabIndex == 18)
-        {
-           
-            RightAnswer.text = "Elephant";
-            WrongAnswer.text = "Whale";
-            WrongAnswer2.text = "Donkey";
-        }
-        else if (prefabIndex == 19)
-        {
-            
-            RightAnswer.text = "Giraffe";
-            WrongAnswer.text = "Duck";
-            WrongAnswer2.text = "Crab";
-        }
-        else if (prefabIndex == 20)
-        {
-            
-            RightAnswer.text = "Hamster";
-            WrongAnswer.text = "Donkey";
-            WrongAnswer2.text = "Hedgehog";
-        }
-        else if (prefabIndex == 21)
-        {
-            
-            RightAnswer.text = "Hedgehog";
-            WrongAnswer.text = "Hamster";
-            WrongAnswer2.text = "Ladybug";
-        }
-        else if (prefabIndex == 22)
-        {
-            
-            RightAnswer.text = "Horse";
-            WrongAnswer.text = "Cow";
-            WrongAnswer2.text = "Donkey";
-        }
-        else if (prefabIndex == 23)
-        {
-            
-            RightAnswer.text = "Ladybug";
-            WrongAnswer.text = "Fly";
-            WrongAnswer2.text = "Dragonfly";
-        }
-        else if (prefabIndex == 24)
-        {
-            
-            RightAnswer.text = "";
-            WrongAnswer.text = "";
-            WrongAnswer2.text = "";
-        }
+		//Start Animal Display
 
-        
-    }
 
-    public void animalAnswer()
-    {
-        
-        Destroy(CurrentAnimal);
-        int prefabIndex = UnityEngine.Random.Range(0, 24);
-        CurrentAnimal = Instantiate(prefabList[prefabIndex]) as GameObject;
-        int PosIndex = UnityEngine.Random.Range(0, 4);
+		ChangeButtonText();
+		ChangeButtonText();
 
-        if (PosIndex == 0)
-        {
-            Button1.transform.localPosition = new Vector3(-170, -105, 0);
-            Button2.transform.localPosition = new Vector3(170, -105, 0);
-            Button3.transform.localPosition = new Vector3(0, -105, 0);
-        }
-        if (PosIndex == 1)
-        {
-            Button3.transform.localPosition = new Vector3(-170, -105, 0);
-            Button1.transform.localPosition = new Vector3(170, -105, 0);
-            Button2.transform.localPosition = new Vector3(0, -105, 0);
 
-        }
-        if (PosIndex == 2)
-        {
-            Button2.transform.localPosition = new Vector3(-170, -105, 0);
-            Button3.transform.localPosition = new Vector3(170, -105, 0);
-            Button1.transform.localPosition = new Vector3(0, -105, 0);
-        }
-        if (PosIndex == 3)
-        {
-            Button1.transform.localPosition = new Vector3(-170, -105, 0);
-            Button3.transform.localPosition = new Vector3(170, -105, 0);
-            Button2.transform.localPosition = new Vector3(0, -105, 0);
-        }
 
-        if (prefabIndex == 0)
-        {
 
-            RightAnswer.text = "Lion";
-            WrongAnswer.text = "Bat";
-            WrongAnswer2.text = "Dog";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 1)
-        {
 
-            RightAnswer.text = "Beaver";
-            WrongAnswer.text = "Otter";
-            WrongAnswer2.text = "Lynx";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 2)
-        {
 
-            RightAnswer.text = "Beetle";
-            WrongAnswer.text = "Fly";
-            WrongAnswer2.text = "Wasp";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 3)
-        {
+		//END Animal Display
 
-            RightAnswer.text = "Bird";
-            WrongAnswer.text = "Dinosaur";
-            WrongAnswer2.text = "Emu";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 4)
-        {
 
-            RightAnswer.text = "Black Bear";
-            WrongAnswer.text = "Brown Bear";
-            WrongAnswer2.text = "Polar Bear";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 5)
-        {
+	}
 
-            RightAnswer.text = "Brown Bear";
-            WrongAnswer.text = "Rat";
-            WrongAnswer2.text = "Snake";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 6)
-        {
-
-            RightAnswer.text = "Buffalo";
-            WrongAnswer.text = "Aligator";
-            WrongAnswer2.text = "Zebra";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 7)
-        {
-
-            RightAnswer.text = "BumbleBee";
-            WrongAnswer.text = "Wasp";
-            WrongAnswer2.text = "Dragonfly";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 8)
-        {
-
-            RightAnswer.text = "Butterfly";
-            WrongAnswer.text = "Dragon";
-            WrongAnswer2.text = "Lion";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 9)
-        {
-
-            RightAnswer.text = "Chicken";
-            WrongAnswer.text = "Bird";
-            WrongAnswer2.text = "Cow";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 10)
-        {
-
-            RightAnswer.text = "Cow";
-            WrongAnswer.text = "Duck";
-            WrongAnswer2.text = "Horse";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 11)
-        {
-
-            RightAnswer.text = "Coyote";
-            WrongAnswer.text = "Buffalo";
-            WrongAnswer2.text = "Dalmation";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 12)
-        {
-
-            RightAnswer.text = "Crab";
-            WrongAnswer.text = "Cow";
-            WrongAnswer2.text = "Ladybug";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 13)
-        {
-
-            RightAnswer.text = "Dalmation";
-            WrongAnswer.text = "Coyote";
-            WrongAnswer2.text = "Brown Bear";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 14)
-        {
-
-            RightAnswer.text = "Donkey";
-            WrongAnswer.text = "Elephant";
-            WrongAnswer2.text = "Hedgehog";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 15)
-        {
-
-            RightAnswer.text = "Dragonfly";
-            WrongAnswer.text = "Bird";
-            WrongAnswer2.text = "Beaver";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 16)
-        {
-
-            RightAnswer.text = "Duck";
-            WrongAnswer.text = "BumbleBee";
-            WrongAnswer2.text = "Black Bear";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 17)
-        {
-
-            RightAnswer.text = "Dugong";
-            WrongAnswer.text = "Seal";
-            WrongAnswer2.text = "Lion";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 18)
-        {
-
-            RightAnswer.text = "Elephant";
-            WrongAnswer.text = "Whale";
-            WrongAnswer2.text = "Donkey";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 19)
-        {
-
-            RightAnswer.text = "Giraffe";
-            WrongAnswer.text = "Duck";
-            WrongAnswer2.text = "Crab";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 20)
-        {
-
-            RightAnswer.text = "Hamster";
-            WrongAnswer.text = "Donkey";
-            WrongAnswer2.text = "Hedgehog";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 21)
-        {
-
-            RightAnswer.text = "Hedgehog";
-            WrongAnswer.text = "Hamster";
-            WrongAnswer2.text = "Ladybug";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 22)
-        {
-
-            RightAnswer.text = "Horse";
-            WrongAnswer.text = "Cow";
-            WrongAnswer2.text = "Donkey";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 23)
-        {
-
-            RightAnswer.text = "Ladybug";
-            WrongAnswer.text = "Fly";
-            WrongAnswer2.text = "Dragonfly";
-            totalScore = totalScore - 50;
-            lives = lives - 1;
-        }
-        else if (prefabIndex == 24)
-        {
-
-            RightAnswer.text = "";
-            WrongAnswer.text = "";
-            WrongAnswer2.text = "";
-        }
-
-    }
-    public void animalRightAnswer()
-    {
-
-        Destroy(CurrentAnimal);
-        int prefabIndex = UnityEngine.Random.Range(0, 24);
-        CurrentAnimal = Instantiate(prefabList[prefabIndex]) as GameObject;
-        int PosIndex = UnityEngine.Random.Range(0, 4);
-        if (PosIndex == 0)
-        {
-            Button1.transform.localPosition = new Vector3(-170, -105, 0);
-            Button2.transform.localPosition = new Vector3(170, -105, 0);
-            Button3.transform.localPosition = new Vector3(0, -105, 0);
-        }
-        if (PosIndex == 1)
-        {
-            Button3.transform.localPosition = new Vector3(-170, -105, 0);
-            Button1.transform.localPosition = new Vector3(170, -105, 0);
-            Button2.transform.localPosition = new Vector3(0, -105, 0);
-
-        }
-        if (PosIndex == 2)
-        {
-            Button2.transform.localPosition = new Vector3(-170, -105, 0);
-            Button3.transform.localPosition = new Vector3(170, -105, 0);
-            Button1.transform.localPosition = new Vector3(0, -105, 0);
-        }
-        if (PosIndex == 3)
-        {
-            Button1.transform.localPosition = new Vector3(-170, -105, 0);
-            Button3.transform.localPosition = new Vector3(170, -105, 0);
-            Button2.transform.localPosition = new Vector3(0, -105, 0);
-        }
-
-        if (prefabIndex == 0)
-        {
-
-            RightAnswer.text = "Lion";
-            WrongAnswer.text = "Bat";
-            WrongAnswer2.text = "Dog";
-            totalScore = totalScore + 100;
-            
-
-
-        }
-        else if (prefabIndex == 1)
-        {
-
-            RightAnswer.text = "Beaver";
-            WrongAnswer.text = "Otter";
-            WrongAnswer2.text = "Lynx";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 2)
-        {
-
-            RightAnswer.text = "Beetle";
-            WrongAnswer.text = "Fly";
-            WrongAnswer2.text = "Wasp";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 3)
-        {
-
-            RightAnswer.text = "Bird";
-            WrongAnswer.text = "Dinosaur";
-            WrongAnswer2.text = "Emu";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 4)
-        {
-
-            RightAnswer.text = "Black Bear";
-            WrongAnswer.text = "Brown Bear";
-            WrongAnswer2.text = "Polar Bear";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 5)
-        {
-
-            RightAnswer.text = "Brown Bear";
-            WrongAnswer.text = "Rat";
-            WrongAnswer2.text = "Snake";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 6)
-        {
-
-            RightAnswer.text = "Buffalo";
-            WrongAnswer.text = "Aligator";
-            WrongAnswer2.text = "Zebra";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 7)
-        {
-
-            RightAnswer.text = "BumbleBee";
-            WrongAnswer.text = "Wasp";
-            WrongAnswer2.text = "Dragonfly";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 8)
-        {
-
-            RightAnswer.text = "Butterfly";
-            WrongAnswer.text = "Dragon";
-            WrongAnswer2.text = "Lion";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 9)
-        {
-
-            RightAnswer.text = "Chicken";
-            WrongAnswer.text = "Bird";
-            WrongAnswer2.text = "Cow";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 10)
-        {
-
-            RightAnswer.text = "Cow";
-            WrongAnswer.text = "Duck";
-            WrongAnswer2.text = "Horse";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 11)
-        {
-
-            RightAnswer.text = "Coyote";
-            WrongAnswer.text = "Buffalo";
-            WrongAnswer2.text = "Dalmation";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 12)
-        {
-
-            RightAnswer.text = "Crab";
-            WrongAnswer.text = "Cow";
-            WrongAnswer2.text = "Ladybug";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 13)
-        {
-
-            RightAnswer.text = "Dalmation";
-            WrongAnswer.text = "Coyote";
-            WrongAnswer2.text = "Brown Bear";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 14)
-        {
-
-            RightAnswer.text = "Donkey";
-            WrongAnswer.text = "Elephant";
-            WrongAnswer2.text = "Hedgehog";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 15)
-        {
-
-            RightAnswer.text = "Dragonfly";
-            WrongAnswer.text = "Bird";
-            WrongAnswer2.text = "Beaver";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 16)
-        {
-
-            RightAnswer.text = "Duck";
-            WrongAnswer.text = "BumbleBee";
-            WrongAnswer2.text = "Black Bear";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 17)
-        {
-
-            RightAnswer.text = "Dugong";
-            WrongAnswer.text = "Seal";
-            WrongAnswer2.text = "Lion";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 18)
-        {
-
-            RightAnswer.text = "Elephant";
-            WrongAnswer.text = "Whale";
-            WrongAnswer2.text = "Donkey";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 19)
-        {
-
-            RightAnswer.text = "Giraffe";
-            WrongAnswer.text = "Duck";
-            WrongAnswer2.text = "Crab";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 20)
-        {
-
-            RightAnswer.text = "Hamster";
-            WrongAnswer.text = "Donkey";
-            WrongAnswer2.text = "Hedgehog";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 21)
-        {
-
-            RightAnswer.text = "Hedgehog";
-            WrongAnswer.text = "Hamster";
-            WrongAnswer2.text = "Ladybug";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 22)
-        {
-
-            RightAnswer.text = "Horse";
-            WrongAnswer.text = "Cow";
-            WrongAnswer2.text = "Donkey";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 23)
-        {
-
-            RightAnswer.text = "Ladybug";
-            WrongAnswer.text = "Fly";
-            WrongAnswer2.text = "Dragonfly";
-            totalScore = totalScore + 100;
-        }
-        else if (prefabIndex == 24)
-        {
-
-            RightAnswer.text = "";
-            WrongAnswer.text = "";
-            WrongAnswer2.text = "";
-        }
-
-    }
-
-
-  
+	public void CheckAnswer(string test) {
+		if (buttonPressed == test)
+		{
+			Debug.Log("Correct Answer");
+		}
+		else {
+			Debug.Log("Wrong Answer");
+		}
+	}
+	 
     void Update () {
         if (lives <= 0)
         {
@@ -806,6 +272,7 @@ public class InstantiateAnimals : MonoBehaviour {
             Button1.SetActive(false);
             Button2.SetActive(false);
             Button3.SetActive(false);
+			
         }
 	}
 }
