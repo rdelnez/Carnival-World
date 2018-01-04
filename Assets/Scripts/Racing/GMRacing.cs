@@ -15,10 +15,10 @@ public class GMRacing : MonoBehaviour {
 
 	
    // public static GMRacing instance = null;
-    //public Sprite LeftNum;
-    //public Sprite RightNum;
-   // public GameObject LeftNum;
-   // public GameObject RightNum;
+    public Sprite LeftNum;
+    public Sprite RightNum;
+    public GameObject LeftNum1;
+    public GameObject RightNum1;
     public GameObject Operator;
 
     public float speedY;
@@ -28,6 +28,7 @@ public class GMRacing : MonoBehaviour {
     public int num2;
     public Text RightAnswer;
     public Text WrongAnswer;
+	
     enum Operators
     {
         Plus = 1,
@@ -69,8 +70,8 @@ public class GMRacing : MonoBehaviour {
         num2 = (Random.Range(1, 10));
         Equation = Equation.GetComponent<Text>();
         Equation.text = (num1 * num2).ToString();
-       // LeftNum.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + Random.Range(0, 10));
-       // RightNum.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + Random.Range(0, 10));
+       // LeftNum1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + Random.Range(0, 10));
+       // RightNum1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + Random.Range(0, 10));
        // Operator.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/" + (Operators)Random.Range(1, 5));
     }
   

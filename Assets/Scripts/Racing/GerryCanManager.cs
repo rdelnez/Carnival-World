@@ -9,6 +9,7 @@ public class GerryCanManager : MonoBehaviour {
 	public Transform can3Pos;
 
 	public Object gerryCanPrefab;
+	public GameObject gerryCanGameObject;
 
 	public string difficulty;
 
@@ -29,11 +30,28 @@ public class GerryCanManager : MonoBehaviour {
 
 		if (difficulty == "normal") {
 
-			Instantiate(gerryCanPrefab, can1Pos.localPosition, Quaternion.identity);
-			Instantiate(gerryCanPrefab, can2Pos.localPosition, Quaternion.identity);
-			Instantiate(gerryCanPrefab, can3Pos.localPosition, Quaternion.identity);
+			gerryCanGameObject = Instantiate(gerryCanPrefab, can1Pos.localPosition, Quaternion.identity) as GameObject;
+			DisplayNumberOnCan(gerryCanGameObject, 9, true);
+
+			gerryCanGameObject = Instantiate(gerryCanPrefab, can2Pos.localPosition, Quaternion.identity) as GameObject;
+			DisplayNumberOnCan(gerryCanGameObject, 4, false);
+
+			gerryCanGameObject = Instantiate(gerryCanPrefab, can3Pos.localPosition, Quaternion.identity) as GameObject;
+			DisplayNumberOnCan(gerryCanGameObject, 35, false);
 
 		}
 
 	}
+
+	void DisplayNumberOnCan(GameObject tempGerryCan, int tempValue, bool isCorrect) {
+
+		GerryCanScript tempScript;
+		tempScript = tempGerryCan.GetComponent<GerryCanScript>();
+		tempScript.ChangeGerryCanValue(tempValue);
+		if (isCorrect) {
+			tempScript.isCorrectAnswer = true;
+		}
+	}
+
+
 }

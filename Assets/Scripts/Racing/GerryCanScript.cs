@@ -9,11 +9,18 @@ public class GerryCanScript : MonoBehaviour {
 	public float speedY;
 	public GameObject GM;
 	public GMRacing GM_Script;
+	public bool isCorrectAnswer;
+	public SpriteRenderer firstNum;
+	public SpriteRenderer secondNum;
+
+
+
 	// Use this for initialization
 	void Awake() {
 		speedY = -6.0f;
 		GM_Script = GameObject.FindWithTag("GameManager").gameObject.GetComponent<GMRacing>();
-
+		firstNum = transform.GetChild(0).GetComponent<SpriteRenderer>();
+		secondNum = transform.GetChild(1).GetComponent<SpriteRenderer>();
 	}
 
 	void Start () {
@@ -34,6 +41,18 @@ public class GerryCanScript : MonoBehaviour {
 			transform.Translate(0 * Time.deltaTime, speedY * Time.deltaTime, 0);
 			yield return null;
 		}
+	}
+
+	public void ChangeGerryCanValue(int tempValue) {
+		value = tempValue;
+		if (value < 10) {
+			firstNum.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ0");
+			secondNum.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + value);
+
+		}
+
+
+
 	}
 
 
