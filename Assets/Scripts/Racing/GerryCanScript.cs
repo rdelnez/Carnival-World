@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GerryCanScript : MonoBehaviour {
 
+	public Object smokeBubble;
 	public int value;
 	public float speedY;
 	public GameObject GM;
@@ -61,6 +62,7 @@ public class GerryCanScript : MonoBehaviour {
 		Debug.Log("Collision2D");
 
 		if (GM_Script.isGerryCanAvailable == true) {
+			Instantiate(smokeBubble, transform.localPosition, Quaternion.identity);
 			Destroy(this.gameObject);
 			GM_Script.isGerryCanAvailable = false;
 		}

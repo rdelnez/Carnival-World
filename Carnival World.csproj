@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\Racing\GerryCanManager.cs" />
     <Compile Include="Assets\Scripts\Racing\GerryCanScript.cs" />
     <Compile Include="Assets\Scripts\Racing\PMRacing.cs" />
+    <Compile Include="Assets\Scripts\Racing\SmokeScript.cs" />
     <Compile Include="Assets\Scripts\Racing\TrackRacing.cs" />
     <Compile Include="Assets\Scripts\Shapes\CameraScript.cs" />
     <Compile Include="Assets\Scripts\Shapes\CharacterScript.cs" />
