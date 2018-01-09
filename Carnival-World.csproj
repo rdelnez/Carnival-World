@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{534146F3-9721-0CAD-134A-3E2E28428473}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp.dll</AssemblyName>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -81,9 +81,14 @@
     <Compile Include="Assets\Scripts\Menu\CameraMenuScript.cs" />
     <Compile Include="Assets\Scripts\Menu\CarnivalWorldBannerScript.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuAnimationManager.cs" />
+    <Compile Include="Assets\Scripts\Racing\CameraRacingScript.cs" />
     <Compile Include="Assets\Scripts\Racing\GMRacing.cs" />
     <Compile Include="Assets\Scripts\Racing\GameObjects.cs" />
+    <Compile Include="Assets\Scripts\Racing\GerryCanManager.cs" />
+    <Compile Include="Assets\Scripts\Racing\GerryCanScript.cs" />
     <Compile Include="Assets\Scripts\Racing\PMRacing.cs" />
+    <Compile Include="Assets\Scripts\Racing\QMRacing.cs" />
+    <Compile Include="Assets\Scripts\Racing\SmokeScript.cs" />
     <Compile Include="Assets\Scripts\Racing\TrackRacing.cs" />
     <Compile Include="Assets\Scripts\Shapes\CameraScript.cs" />
     <Compile Include="Assets\Scripts\Shapes\CharacterScript.cs" />

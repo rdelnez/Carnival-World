@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 public class SVM_Script : MonoBehaviour
 {
 
-	public static string gameDifficulty;
+	public string gameDifficulty;
 	
 	public static SVM_Script Instance
 	{
 		get;
-		set;
+		private set;
 	}
 
 	public GameObject canvas;
@@ -57,8 +57,6 @@ public class SVM_Script : MonoBehaviour
 
 	void SceneLoadListener(Scene scene, LoadSceneMode loadMode)
 	{
-	
-	
 		SetUpLoadingScreen();
 	}
 
@@ -107,7 +105,7 @@ public class SVM_Script : MonoBehaviour
 			InstructionSeen = false;
 		}
 	}
-
+	--*/
 	public void LoadLevel(string levelName)
 	{
 		if (!loadingScreen)
@@ -126,5 +124,4 @@ public class SVM_Script : MonoBehaviour
 		yield return async;
 	}
 
-	--*/
 }

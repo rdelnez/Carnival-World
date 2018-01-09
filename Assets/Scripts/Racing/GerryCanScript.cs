@@ -17,25 +17,30 @@ public class GerryCanScript : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Awake() {
+	void Awake()
+	{
 		speedY = -6.0f;
 		GM_Script = GameObject.FindWithTag("GameManager").gameObject.GetComponent<GMRacing>();
 		firstNum = transform.GetChild(0).GetComponent<SpriteRenderer>();
 		secondNum = transform.GetChild(1).GetComponent<SpriteRenderer>();
 	}
 
-	void Start () {
+	void Start ()
+	{
+		Destroy(gameObject, 10f);
 		StartCoroutine(TestRed());
 	}
 	
 	
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		
 	}
 
-	IEnumerator TestRed() {
+	IEnumerator TestRed()
+	{
 		while (true)
 		{   //Debug.Log("dfadsfsd");
 			//Debug.Log(Time.deltaTime + " Can");
@@ -46,14 +51,18 @@ public class GerryCanScript : MonoBehaviour {
 
 	public void ChangeGerryCanValue(int tempValue) {
 		value = tempValue;
-		if (value < 10) {
+		if(value < 10)
+		{
 			firstNum.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ0");
 			secondNum.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + value);
 
 		}
-
-
-
+		else
+		{
+			string valueString = value.ToString();
+			firstNum.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + valueString[0]);
+			secondNum.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + valueString[1]);
+		}
 	}
 
 

@@ -28,7 +28,7 @@ public class TrackRacing : MonoBehaviour {
             if (transform.position.y <= -22.7f)
             {
                
-               transform.position = new Vector3(0, 22.7f, 0);
+               transform.position = new Vector3(0, 40f, 0);
                 
 
             }
