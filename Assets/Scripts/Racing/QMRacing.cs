@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QMRacing : MonoBehaviour
 {
-
+	public Image num1Left2, num2Right, num1Left, num2Right2, Operator;
+	public bool isQuestion;
 	public enum Operators
 	{
 		Plus = 1,
@@ -14,15 +16,29 @@ public class QMRacing : MonoBehaviour
 	}
 	Operators calcSymbol;
 
-	private int num1, num2, maxValue, answer;
+	private int num1, num2, maxValue, answer, value;
 	string difficulty;
 	void Start()
 	{
+		isQuestion = true;
+		num1Left.GetComponent<Image>();
+		num2Right.GetComponent<Image>();
+		num1Left2.GetComponent<Image>();
+		num2Right2.GetComponent<Image>();
+		Operator.GetComponent<Image>();
 		difficulty = "Normal" /*SVM_Script.Instance.gameDifficulty*/;
-		GenQuestion();
+		StartCoroutine(StartGenQuestion());
 	}
 
-	public GameObject num1Left, num1Right, num2Left, num2Right, Operator;
+	public IEnumerator StartGenQuestion() {
+		while(isQuestion){
+			Debug.Log("entering GenQ");
+			GenQuestion();
+			yield return new WaitForSeconds(11.0f);
+		}
+	}
+
+	
 
 	public GerryCanManager GCM;
 
@@ -45,7 +61,7 @@ public class QMRacing : MonoBehaviour
 		}
 
 		StartCoroutine(QuestionGen());
-		//GCM.NewAnswer(answer);
+		GCM.NewAnswer(answer);
 	}
 
 	IEnumerator QuestionGen()
@@ -58,14 +74,19 @@ public class QMRacing : MonoBehaviour
 				num2 = Random.Range(3, maxValue);
 
 				answer = num1 + num2;
+				QuestionSpriteManager(value);
+				Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Plus");
 				break;
 			}
 			else if(calcSymbol == Operators.Minus)
 			{
-				num1 = Random.Range(3, maxValue);
-				num2 = Random.Range(3, num1 + 1);
+				num1 = Random.Range(5, maxValue);
+				//num2 = Random.Range(3, maxValue);
+				num2 = Random.Range(1, num2);
 
 				answer = num1 - num2;
+				QuestionSpriteManager(value);
+				Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Minus");
 				break;
 			}
 			else if(calcSymbol == Operators.Multiply)
@@ -74,22 +95,26 @@ public class QMRacing : MonoBehaviour
 				num2 = Random.Range(3, 11);
 
 				answer = num1 * num2;
+				QuestionSpriteManager(value);
+				Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Multiply");
 				break;
 			}
 			else
 			{
 				num1 = Random.Range(3, maxValue);
-				num2 = Random.Range(3, num1 + 1);
+				num2 = Random.Range(3, maxValue);
 				if(num1 % num2 == 0)
 				{
 					answer = num1 / num2;
+					QuestionSpriteManager(value);
+					Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Divide");
 					break;
 				}
 			}
 			yield return null;
 		}
 
-		DisplayQuestion();
+		
 	}
 
 	IEnumerator DisplayQuestion()
@@ -97,9 +122,25 @@ public class QMRacing : MonoBehaviour
 		while(true)
 		{
 
-			//Make things happen Kevin
+			
 			yield return null;
 		}
 		
 	}
-}
+	public void QuestionSpriteManager(int TempValue){
+	    value = TempValue;
+
+		if(value < 10)
+		{
+			num2Right.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + num2);
+			num1Left.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + num1);
+		}
+		else
+		{
+			string ValueString = value.ToString();
+			num2Right.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + ValueString[0]);
+			num1Left.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + ValueString[1]);
+		}
+		
+	}
+	}
