@@ -45,6 +45,8 @@ public class GerryCanManager : MonoBehaviour {
 			gerryCanGameObject = Instantiate(gerryCanPrefab, spawnPoints[spawnIndecies[x]], Quaternion.identity) as GameObject;
 			DisplayNumberOnCan(gerryCanGameObject, currentAnswer, true);
 			spawnIndecies.RemoveAt(x);
+
+
 		}
 		for(int x = 0; x < spawnPoints.Count; x++)
 		{
@@ -54,11 +56,19 @@ public class GerryCanManager : MonoBehaviour {
 
 	public void NewAnswer(int newAnswer)
 	{
+		rand1 = Random.Range(1, newAnswer + 1);
+		rand2 = Random.Range(1, newAnswer + 1);
+
 		currentAnswer = newAnswer;
-		rand1 = Random.Range(0, newAnswer + 1);
-		rand2 = Random.Range(0, newAnswer + 1);
+		while (rand1 == currentAnswer) {
+			rand1 = Random.Range(1, newAnswer + 1);
+		}
+		while (rand2 == currentAnswer || rand1 == rand2) {
+			rand2 = Random.Range(1, newAnswer + 1);
+		}
 		InstantiateGerryCan();
 	}
+
 
 	void DisplayNumberOnCan(GameObject tempGerryCan, int tempValue, bool isCorrect) {
 

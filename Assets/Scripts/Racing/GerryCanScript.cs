@@ -32,6 +32,7 @@ public class GerryCanScript : MonoBehaviour {
 		
 		StartCoroutine(TestRed());
 		
+		
 	}
 	
 	
@@ -57,6 +58,7 @@ public class GerryCanScript : MonoBehaviour {
 		
 		value = tempValue;
 		Debug.Log("this is a value "+value);
+		
 		if(value < 10)
 		{
 			
@@ -70,6 +72,7 @@ public class GerryCanScript : MonoBehaviour {
 			firstNum.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + valueString[0]);
 			secondNum.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + valueString[1]);
 		}
+
 	}
 
 
@@ -77,15 +80,25 @@ public class GerryCanScript : MonoBehaviour {
 	{
 		Debug.Log("Collision2D");
 
-		if (GM_Script.isGerryCanAvailable == true) {
+		if (GM_Script.isGerryCanAvailable == true)
+		{
 			Instantiate(smokeBubble, transform.localPosition, Quaternion.identity);
 			Destroy(this.gameObject);
 			GM_Script.isGerryCanAvailable = false;
 		}
+
+		if (collision.gameObject.tag == "DeadZone")
+		{
+			
+			DestroyGerryCan();
+		}
 		
 	}
 
+	public void DestroyGerryCan() {
 
+		Destroy(this.gameObject);
+	}
 
 
 }

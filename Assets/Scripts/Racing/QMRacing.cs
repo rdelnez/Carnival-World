@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class QMRacing : MonoBehaviour
 {
 	public Image num1Left2, num2Right, num1Left, num2Right2, Operator;
-	public bool isQuestion;
+	public bool isGameRunning;
+	public GMRacing GM_Script;
 	public enum Operators
 	{
 		Plus = 1,
@@ -20,7 +21,8 @@ public class QMRacing : MonoBehaviour
 	string difficulty;
 	void Start()
 	{
-		isQuestion = true;
+		GM_Script = GameObject.FindWithTag("GameManager").gameObject.GetComponent<GMRacing>();
+		isGameRunning = true;
 		num1Left.GetComponent<Image>();
 		num2Right.GetComponent<Image>();
 		num1Left2.GetComponent<Image>();
@@ -31,20 +33,25 @@ public class QMRacing : MonoBehaviour
 	}
 
 	public IEnumerator StartGenQuestion() {
-		while(isQuestion){
+		while(isGameRunning)
+		{
 			Debug.Log("entering GenQ");
+			ResetVariablesNewQuestion();
 			GenQuestion();
 			yield return new WaitForSeconds(11.0f);
 		}
 	}
 
-	
+	public void ResetVariablesNewQuestion() {
+		GM_Script.isGerryCanAvailable = true;
+	}
 
 	public GerryCanManager GCM;
 
 	public void GenQuestion()
 	{
-		if(difficulty == "Normal")
+		
+		if (difficulty == "Normal")
 		{
 			calcSymbol = (Operators)Random.Range(1, 3);
 			maxValue = 10;

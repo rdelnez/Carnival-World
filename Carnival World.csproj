@@ -97,11 +97,13 @@
     <Compile Include="Assets\Scripts\Menu\CarnivalWorldBannerScript.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuAnimationManager.cs" />
     <Compile Include="Assets\Scripts\Racing\CameraRacingScript.cs" />
+    <Compile Include="Assets\Scripts\Racing\DestroyZoneScripts.cs" />
     <Compile Include="Assets\Scripts\Racing\GMRacing.cs" />
     <Compile Include="Assets\Scripts\Racing\GameObjects.cs" />
     <Compile Include="Assets\Scripts\Racing\GerryCanManager.cs" />
     <Compile Include="Assets\Scripts\Racing\GerryCanScript.cs" />
     <Compile Include="Assets\Scripts\Racing\PMRacing.cs" />
+    <Compile Include="Assets\Scripts\Racing\QMRacing.cs" />
     <Compile Include="Assets\Scripts\Racing\SmokeScript.cs" />
     <Compile Include="Assets\Scripts\Racing\TrackRacing.cs" />
     <Compile Include="Assets\Scripts\Shapes\CameraScript.cs" />
