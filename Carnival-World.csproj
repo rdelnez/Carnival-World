@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Menu\CarnivalWorldBannerScript.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuAnimationManager.cs" />
     <Compile Include="Assets\Scripts\Racing\CameraRacingScript.cs" />
+    <Compile Include="Assets\Scripts\Racing\DestroyZoneScripts.cs" />
     <Compile Include="Assets\Scripts\Racing\GMRacing.cs" />
     <Compile Include="Assets\Scripts\Racing\GameObjects.cs" />
     <Compile Include="Assets\Scripts\Racing\GerryCanManager.cs" />

@@ -46,7 +46,7 @@ public class GerryCanScript : MonoBehaviour {
 	IEnumerator TestRed()
 	{
 		while (true)
-		{   Debug.Log("dfadsfsd");
+		{   //Debug.Log("dfadsfsd");
 			//Debug.Log(Time.deltaTime + " Can");
 			transform.Translate(0 * Time.deltaTime, speedY * Time.deltaTime, 0);
 			yield return null;
@@ -62,9 +62,10 @@ public class GerryCanScript : MonoBehaviour {
 		if(value < 10)
 		{
 			
-			firstNum.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ0");
+			firstNum.sprite = Resources.Load<Sprite>("2D/Shared/Transparent 1x1");
 			secondNum.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ"+ value.ToString());
-
+			secondNum.transform.localPosition = new Vector3(0f, 0f, -0.1f);
+			secondNum.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
 		}
 		else
 		{
@@ -75,30 +76,26 @@ public class GerryCanScript : MonoBehaviour {
 
 	}
 
-
 	void OnTriggerEnter2D(Collider2D collision)
 	{
 		Debug.Log("Collision2D");
-
-		if (GM_Script.isGerryCanAvailable == true)
+		if(collision.gameObject.tag == "Player")
 		{
-			Instantiate(smokeBubble, transform.localPosition, Quaternion.identity);
-			Destroy(this.gameObject);
-			GM_Script.isGerryCanAvailable = false;
-		}
-
-		if (collision.gameObject.tag == "DeadZone")
+			if(GM_Script.isGerryCanAvailable == true)
+			{
+				Instantiate(smokeBubble, transform.localPosition, Quaternion.identity);
+				Destroy(this.gameObject);
+				GM_Script.isGerryCanAvailable = false;
+			}
+		}	
+		else if (collision.gameObject.tag == "DeadZone")
 		{
-			
 			DestroyGerryCan();
 		}
-		
 	}
 
-	public void DestroyGerryCan() {
-
+	public void DestroyGerryCan()
+	{
 		Destroy(this.gameObject);
 	}
-
-
 }

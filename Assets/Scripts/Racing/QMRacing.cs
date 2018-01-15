@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class QMRacing : MonoBehaviour
 {
-	public Image num1Left2, num2Right, num1Left, num2Right2, Operator;
+	public Image num1Left, num1Right, num2Left, num2Right, Operator;
 	public bool isGameRunning;
-	public GMRacing GM_Script;
+	[SerializeField]
+	private GMRacing GM_Script;
+	[SerializeField]
+	private GerryCanManager GCM;
 	public enum Operators
 	{
 		Plus = 1,
@@ -16,23 +19,24 @@ public class QMRacing : MonoBehaviour
 		Divide = 4
 	}
 	Operators calcSymbol;
-
-	private int num1, num2, maxValue, answer, value;
-	string difficulty;
+	
+	private int num1, num2, maxValue, answer;
+	private string difficulty;
 	void Start()
 	{
 		GM_Script = GameObject.FindWithTag("GameManager").gameObject.GetComponent<GMRacing>();
 		isGameRunning = true;
 		num1Left.GetComponent<Image>();
+		num1Right.GetComponent<Image>();
+		num2Left.GetComponent<Image>();
 		num2Right.GetComponent<Image>();
-		num1Left2.GetComponent<Image>();
-		num2Right2.GetComponent<Image>();
 		Operator.GetComponent<Image>();
 		difficulty = "Normal" /*SVM_Script.Instance.gameDifficulty*/;
 		StartCoroutine(StartGenQuestion());
 	}
 
-	public IEnumerator StartGenQuestion() {
+	public IEnumerator StartGenQuestion()
+	{
 		while(isGameRunning)
 		{
 			Debug.Log("entering GenQ");
@@ -42,18 +46,18 @@ public class QMRacing : MonoBehaviour
 		}
 	}
 
-	public void ResetVariablesNewQuestion() {
+	public void ResetVariablesNewQuestion()
+	{
 		GM_Script.isGerryCanAvailable = true;
 	}
 
-	public GerryCanManager GCM;
 
 	public void GenQuestion()
 	{
-		
-		if (difficulty == "Normal")
+
+		if(difficulty == "Normal")
 		{
-			calcSymbol = (Operators)Random.Range(1, 3);
+			calcSymbol = (Operators)Random.Range(1, 4);
 			maxValue = 10;
 		}
 		else if(difficulty == "Hard")
@@ -81,7 +85,7 @@ public class QMRacing : MonoBehaviour
 				num2 = Random.Range(3, maxValue);
 
 				answer = num1 + num2;
-				QuestionSpriteManager(value);
+				QuestionSpriteManager();
 				Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Plus");
 				break;
 			}
@@ -92,7 +96,7 @@ public class QMRacing : MonoBehaviour
 				num2 = Random.Range(1, num2);
 
 				answer = num1 - num2;
-				QuestionSpriteManager(value);
+				QuestionSpriteManager();
 				Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Minus");
 				break;
 			}
@@ -102,52 +106,55 @@ public class QMRacing : MonoBehaviour
 				num2 = Random.Range(3, 11);
 
 				answer = num1 * num2;
-				QuestionSpriteManager(value);
+				QuestionSpriteManager();
 				Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Multiply");
 				break;
 			}
 			else
 			{
+				Debug.Log("Try");
 				num1 = Random.Range(3, maxValue);
-				num2 = Random.Range(3, maxValue);
+				num2 = Random.Range(3, num1);
 				if(num1 % num2 == 0)
 				{
+					Debug.Log("Succeed");
 					answer = num1 / num2;
-					QuestionSpriteManager(value);
+					QuestionSpriteManager();
 					Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Divide");
 					break;
 				}
+				Debug.Log("Try Harder");
+				yield return null;
 			}
-			yield return null;
 		}
 
-		
 	}
 
-	IEnumerator DisplayQuestion()
+	public void QuestionSpriteManager()
 	{
-		while(true)
+		string ValueString;
+		if(num1< 10)
 		{
-
-			
-			yield return null;
-		}
-		
-	}
-	public void QuestionSpriteManager(int TempValue){
-	    value = TempValue;
-
-		if(value < 10)
-		{
-			num2Right.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + num2);
-			num1Left.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + num1);
+			num1Left.sprite = Resources.Load<Sprite>("2D/Shared/Transparent 1x1");
+			num1Right.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + num1);
 		}
 		else
 		{
-			string ValueString = value.ToString();
-			num2Right.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + ValueString[0]);
-			num1Left.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + ValueString[1]);
+			ValueString = num1.ToString();
+			num1Left.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + ValueString[0]);
+			num1Right.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + ValueString[1]);
 		}
-		
+
+		if(num2 < 10)
+		{
+			num2Right.sprite = Resources.Load<Sprite>("2D/Shared/Transparent 1x1");
+			num2Left.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + num2);
+		}
+		else
+		{
+			ValueString = num2.ToString();
+			num2Left.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + ValueString[0]);
+			num2Right.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + ValueString[1]);
+		}
 	}
-	}
+}
