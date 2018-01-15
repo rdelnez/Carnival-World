@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GerryCanManager : MonoBehaviour {
+public class GerryCanManager : MonoBehaviour
+{
 
 	List<Vector3> spawnPoints;
 	List<int> spawnIndecies;
@@ -56,26 +57,30 @@ public class GerryCanManager : MonoBehaviour {
 
 	public void NewAnswer(int newAnswer)
 	{
-		rand1 = Random.Range(1, newAnswer + 1);
-		rand2 = Random.Range(1, newAnswer + 1);
+		rand1 = Random.Range(1, newAnswer);
+		rand2 = Random.Range(1, newAnswer);
 
 		currentAnswer = newAnswer;
-		while (rand1 == currentAnswer) {
-			rand1 = Random.Range(1, newAnswer + 1);
-		}
-		while (rand2 == currentAnswer || rand1 == rand2) {
-			rand2 = Random.Range(1, newAnswer + 1);
+		StartCoroutine(RandFix());
+	}
+
+	IEnumerator RandFix()
+	{
+		while(rand1 == rand2)
+		{
+			rand2 = Random.Range(1, currentAnswer);
+			yield return null;
 		}
 		InstantiateGerryCan();
 	}
 
-
-	void DisplayNumberOnCan(GameObject tempGerryCan, int tempValue, bool isCorrect) {
-
+	void DisplayNumberOnCan(GameObject tempGerryCan, int tempValue, bool isCorrect)
+	{
 		GerryCanScript tempScript;
 		tempScript = tempGerryCan.GetComponent<GerryCanScript>();
 		tempScript.ChangeGerryCanValue(tempValue);
-		if (isCorrect) {
+		if (isCorrect)
+		{
 			tempScript.isCorrectAnswer = true;
 		}
 	}

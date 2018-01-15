@@ -29,39 +29,28 @@ public class GerryCanScript : MonoBehaviour {
 
 	void Start ()
 	{
-		
 		StartCoroutine(TestRed());
-		
-		
 	}
 	
-	
-
-	// Update is called once per frame
-	void Update ()
-	{
-
-	}
 
 	IEnumerator TestRed()
 	{
 		while (true)
 		{   //Debug.Log("dfadsfsd");
 			//Debug.Log(Time.deltaTime + " Can");
-			transform.Translate(0 * Time.deltaTime, speedY * Time.deltaTime, 0);
+			transform.Translate(0, speedY * Time.deltaTime, 0);
 			yield return null;
 		}
 	}
 
-	public void ChangeGerryCanValue(int tempValue) {
+	public void ChangeGerryCanValue(int tempValue)
+	{
 
-		
 		value = tempValue;
 		Debug.Log("this is a value "+value);
 		
 		if(value < 10)
 		{
-			
 			firstNum.sprite = Resources.Load<Sprite>("2D/Shared/Transparent 1x1");
 			secondNum.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ"+ value.ToString());
 			secondNum.transform.localPosition = new Vector3(0f, 0f, -0.1f);
@@ -84,8 +73,8 @@ public class GerryCanScript : MonoBehaviour {
 			if(GM_Script.isGerryCanAvailable == true)
 			{
 				Instantiate(smokeBubble, transform.localPosition, Quaternion.identity);
-				Destroy(this.gameObject);
 				GM_Script.isGerryCanAvailable = false;
+				Destroy(gameObject);
 			}
 		}	
 		else if (collision.gameObject.tag == "DeadZone")
@@ -96,6 +85,6 @@ public class GerryCanScript : MonoBehaviour {
 
 	public void DestroyGerryCan()
 	{
-		Destroy(this.gameObject);
+		Destroy(gameObject);
 	}
 }

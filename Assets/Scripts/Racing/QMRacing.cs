@@ -9,8 +9,7 @@ public class QMRacing : MonoBehaviour
 	public bool isGameRunning;
 	[SerializeField]
 	private GMRacing GM_Script;
-	[SerializeField]
-	private GerryCanManager GCM;
+	public GerryCanManager GCM;
 	public enum Operators
 	{
 		Plus = 1,
@@ -42,7 +41,7 @@ public class QMRacing : MonoBehaviour
 			Debug.Log("entering GenQ");
 			ResetVariablesNewQuestion();
 			GenQuestion();
-			yield return new WaitForSeconds(11.0f);
+			yield return new WaitForSeconds(10.5f);
 		}
 	}
 
@@ -57,7 +56,7 @@ public class QMRacing : MonoBehaviour
 
 		if(difficulty == "Normal")
 		{
-			calcSymbol = (Operators)Random.Range(1, 4);
+			calcSymbol = Operators.Divide/*(Operators)Random.Range(1, 3)*/;
 			maxValue = 10;
 		}
 		else if(difficulty == "Hard")
@@ -72,7 +71,6 @@ public class QMRacing : MonoBehaviour
 		}
 
 		StartCoroutine(QuestionGen());
-		GCM.NewAnswer(answer);
 	}
 
 	IEnumerator QuestionGen()
@@ -87,6 +85,7 @@ public class QMRacing : MonoBehaviour
 				answer = num1 + num2;
 				QuestionSpriteManager();
 				Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Plus");
+				GCM.NewAnswer(answer);
 				break;
 			}
 			else if(calcSymbol == Operators.Minus)
@@ -98,6 +97,7 @@ public class QMRacing : MonoBehaviour
 				answer = num1 - num2;
 				QuestionSpriteManager();
 				Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Minus");
+				GCM.NewAnswer(answer);
 				break;
 			}
 			else if(calcSymbol == Operators.Multiply)
@@ -108,19 +108,21 @@ public class QMRacing : MonoBehaviour
 				answer = num1 * num2;
 				QuestionSpriteManager();
 				Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Multiply");
+				GCM.NewAnswer(answer);
 				break;
 			}
 			else
 			{
 				Debug.Log("Try");
-				num1 = Random.Range(3, maxValue);
-				num2 = Random.Range(3, num1);
+				num1 = Random.Range(5, maxValue);
+				num2 = Random.Range(2, num1);
 				if(num1 % num2 == 0)
 				{
 					Debug.Log("Succeed");
 					answer = num1 / num2;
 					QuestionSpriteManager();
 					Operator.sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/Divide");
+					GCM.NewAnswer(answer);
 					break;
 				}
 				Debug.Log("Try Harder");
@@ -144,7 +146,6 @@ public class QMRacing : MonoBehaviour
 			num1Left.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + ValueString[0]);
 			num1Right.sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + ValueString[1]);
 		}
-
 		if(num2 < 10)
 		{
 			num2Right.sprite = Resources.Load<Sprite>("2D/Shared/Transparent 1x1");

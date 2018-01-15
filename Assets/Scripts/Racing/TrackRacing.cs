@@ -9,11 +9,11 @@ public class TrackRacing : MonoBehaviour {
    
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
         speedY = -6.0f;
         moveToThisY = -100;
         
-
         StartCoroutine("MoveRaceTrack");
 	}
 
