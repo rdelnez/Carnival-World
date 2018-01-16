@@ -15,6 +15,7 @@ public class GerryCanScript : MonoBehaviour {
 	public SpriteRenderer secondNum;
 	public GerryCanManager GerryCan_Script;
 	public bool isGerryCanAvailable;
+	public QMRacing QM_Script;
 
 
 	// Use this for initialization
@@ -23,6 +24,7 @@ public class GerryCanScript : MonoBehaviour {
 		speedY = -6.0f;
 		GM_Script = GameObject.FindWithTag("GameManager").gameObject.GetComponent<GMRacing>();
 		GerryCan_Script = GameObject.FindWithTag("GerryCanManager").gameObject.GetComponent<GerryCanManager>();
+		QM_Script = GameObject.FindWithTag("QuestionManager").gameObject.GetComponent<QMRacing>();
 		firstNum = transform.GetChild(0).GetComponent<SpriteRenderer>();
 		secondNum = transform.GetChild(1).GetComponent<SpriteRenderer>();
 	}
@@ -79,12 +81,15 @@ public class GerryCanScript : MonoBehaviour {
 		}	
 		else if (collision.gameObject.tag == "DeadZone")
 		{
+			
 			DestroyGerryCan();
+			QM_Script.StartQues();
 		}
 	}
 
 	public void DestroyGerryCan()
 	{
+		
 		Destroy(gameObject);
 	}
 }

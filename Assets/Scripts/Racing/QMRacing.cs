@@ -31,18 +31,24 @@ public class QMRacing : MonoBehaviour
 		num2Right.GetComponent<Image>();
 		Operator.GetComponent<Image>();
 		difficulty = "Normal" /*SVM_Script.Instance.gameDifficulty*/;
+		StartQues();
+
+	}
+
+	public void StartQues() {
 		StartCoroutine(StartGenQuestion());
 	}
 
 	public IEnumerator StartGenQuestion()
 	{
-		while(isGameRunning)
-		{
+	//	while(isGameRunning)
+	//	{
 			Debug.Log("entering GenQ");
 			ResetVariablesNewQuestion();
 			GenQuestion();
-			yield return new WaitForSeconds(10.5f);
-		}
+		yield return null;
+			//yield return new WaitForSeconds(10.5f);
+	//	}
 	}
 
 	public void ResetVariablesNewQuestion()
@@ -114,8 +120,8 @@ public class QMRacing : MonoBehaviour
 			else
 			{
 				Debug.Log("Try");
-				num1 = Random.Range(5, maxValue);
-				num2 = Random.Range(2, num1);
+				num1 = Random.Range(5, 99);
+				num2 = Random.Range(3, num1);
 				if(num1 % num2 == 0)
 				{
 					Debug.Log("Succeed");

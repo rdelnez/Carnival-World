@@ -68,7 +68,7 @@ public class GerryCanManager : MonoBehaviour
 	{
 		while(rand1 == rand2)
 		{
-			rand2 = Random.Range(1, currentAnswer);
+			rand2 = Random.Range(1, 9);
 			yield return null;
 		}
 		InstantiateGerryCan();
