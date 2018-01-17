@@ -35,7 +35,14 @@ public class QMRacing : MonoBehaviour
 
 	}
 
+	public void InvokeQuestion()
+	{
+		Invoke("StartQues", 1.0f);
+
+	}
+
 	public void StartQues() {
+		
 		StartCoroutine(StartGenQuestion());
 	}
 
@@ -45,9 +52,10 @@ public class QMRacing : MonoBehaviour
 	//	{
 			Debug.Log("entering GenQ");
 			ResetVariablesNewQuestion();
-			GenQuestion();
+		
+		GenQuestion();
 		yield return null;
-			//yield return new WaitForSeconds(10.5f);
+	 // yield return new WaitForSeconds(10f);
 	//	}
 	}
 
@@ -59,10 +67,11 @@ public class QMRacing : MonoBehaviour
 
 	public void GenQuestion()
 	{
+		
 
 		if(difficulty == "Normal")
 		{
-			calcSymbol = Operators.Divide/*(Operators)Random.Range(1, 3)*/;
+			calcSymbol = (Operators)Random.Range(1, 3);
 			maxValue = 10;
 		}
 		else if(difficulty == "Hard")

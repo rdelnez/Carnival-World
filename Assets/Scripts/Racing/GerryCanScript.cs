@@ -76,16 +76,22 @@ public class GerryCanScript : MonoBehaviour {
 			{
 				Instantiate(smokeBubble, transform.localPosition, Quaternion.identity);
 				GM_Script.isGerryCanAvailable = false;
-				Destroy(gameObject);
+				QM_Script.InvokeQuestion();
+				Destroy(this.gameObject);
+
+
+
 			}
 		}	
 		else if (collision.gameObject.tag == "DeadZone")
 		{
 			
 			DestroyGerryCan();
-			QM_Script.StartQues();
+		
 		}
 	}
+
+
 
 	public void DestroyGerryCan()
 	{

@@ -9,8 +9,9 @@ public class GMRacing : MonoBehaviour
 	public int checkpoint;
 	//public GameObject MonsterTruck;
 	public bool isGerryCanAvailable;
+	public bool isQuestionStarted;
 
-	
+
 	// public static GMRacing instance = null;
 
 	void Awake()
@@ -25,6 +26,7 @@ public class GMRacing : MonoBehaviour
 		//  }
 		//  Setup();  
 		isGerryCanAvailable = true;
+		isQuestionStarted = false;
 		lives = 5;
 		checkpoint = 100;
 		score = 0;
