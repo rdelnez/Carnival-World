@@ -7,9 +7,10 @@ public class GMRacing : MonoBehaviour
 	public int lives;
 	public int score;
 	public int checkpoint;
-	//public GameObject MonsterTruck;
 	public bool isGerryCanAvailable;
 	public bool isQuestionStarted;
+	public QMRacing QM_Script;
+	public GerryCanManager GerryCan_Script;
 
 
 	// public static GMRacing instance = null;
@@ -25,6 +26,8 @@ public class GMRacing : MonoBehaviour
 		//      Destroy(gameObject);
 		//  }
 		//  Setup();  
+		QM_Script = GameObject.FindWithTag("QuestionManager").gameObject.GetComponent<QMRacing>();
+		GerryCan_Script = GameObject.FindWithTag("GerryCanManager").gameObject.GetComponent<GerryCanManager>();
 		isGerryCanAvailable = true;
 		isQuestionStarted = false;
 		lives = 5;
@@ -35,7 +38,7 @@ public class GMRacing : MonoBehaviour
 	public void Setup()
 	{
 		// Instantiate(GerryCan, transform.position, Quaternion.identity);
-        
+		
 	}
 
 	void Start()

@@ -72,6 +72,7 @@ public class GerryCanScript : MonoBehaviour {
 		Debug.Log("Collision2D");
 		if(collision.gameObject.tag == "Player")
 		{
+
 			if(GM_Script.isGerryCanAvailable == true)
 			{
 				Instantiate(smokeBubble, transform.localPosition, Quaternion.identity);
