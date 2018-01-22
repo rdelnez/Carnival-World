@@ -6,14 +6,43 @@ public class TrackRacing : MonoBehaviour {
 
     public int moveToThisY;
     public float speedY;
-   
+	public SpriteRenderer RacingTrackOne, RacingTrackTwo, RacingTrackThree;
+	public int StageSelector;
+	public QMRacing QM_Script;
+	public SoundManagerScript SM_Script;
 
+	private void Awake()
+	{
+		StageSelector = 0;
+		RacingTrackOne.GetComponent<SpriteRenderer>();
+		RacingTrackTwo.GetComponent<SpriteRenderer>();
+		RacingTrackThree.GetComponent<SpriteRenderer>();
+		QM_Script = GameObject.FindWithTag("QuestionManager").gameObject.GetComponent<QMRacing>();
+		SM_Script = GameObject.FindWithTag("SoundManager").gameObject.GetComponent<SoundManagerScript>();
+	}
 	// Use this for initialization
 	void Start ()
 	{
-        speedY = -6.0f;
+		
+		if (QM_Script.difficulty == "Normal")
+		{
+			StageSelector = 1;
+			//Choose BG music
+		}
+		if (QM_Script.difficulty == "Hard")
+		{
+			StageSelector = 2;
+		}
+		if (QM_Script.difficulty == "Expert")
+		{
+			StageSelector = 3;
+		}
+
+		RacingTrackOne.sprite = Resources.Load<Sprite>("2D/Racing/Animation/Race Tracks/Racing-game-stage-" + StageSelector);
+		RacingTrackTwo.sprite = Resources.Load<Sprite>("2D/Racing/Animation/Race Tracks/Racing-game-stage-" + StageSelector);
+		RacingTrackThree.sprite = Resources.Load<Sprite>("2D/Racing/Animation/Race Tracks/Racing-game-stage-" + StageSelector);
+		speedY = -6.0f;
         moveToThisY = -100;
-        
         StartCoroutine("MoveRaceTrack");
 	}
 

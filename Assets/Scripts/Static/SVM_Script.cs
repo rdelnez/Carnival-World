@@ -42,6 +42,7 @@ public class SVM_Script : MonoBehaviour
 
 	void SetUpLoadingScreen()
 	{
+
 		canvas = GameObject.FindGameObjectWithTag("Canvas");
 		loadingScreen = Instantiate(Resources.Load("prefabs/LoadingScreen")) as GameObject;
 		loadingScreen.name = "Loading Screen";

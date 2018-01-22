@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class PMRacing : MonoBehaviour {
 
-    public GameObject MonsterTruck;
+    public GameObject Player;
+	public Transform Player_Tranform;
+	public SpriteRenderer Player_SR;
+	public int PlayerSelector;
 	public Transform cameraTransform;
     public float xSpeed;
     public float Lane3;
@@ -16,12 +19,17 @@ public class PMRacing : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        xSpeed = 6f;
+		PlayerSelector = 0;
+		xSpeed = 6f;
         Lane3 = 3.18f;
         Lane2 = 0f;
         Lane1 = -3.18f;
 		isMoving = false;
-    }
+
+		Player_Tranform = this.GetComponent<Transform>();
+		Player_SR = this.GetComponent<SpriteRenderer>();
+
+	}
 
     public void MoveRight()   
     {
@@ -30,12 +38,12 @@ public class PMRacing : MonoBehaviour {
 			StopAllCoroutines();
 			isMoving = false;
 		}
-        if (MonsterTruck.transform.position.x >= Lane2)
+        if (Player.transform.position.x >= Lane2)
         {
             NextPos = Lane3;
             StartCoroutine("MoveCarRight");
         }
-        else if (MonsterTruck.transform.position.x >= Lane1)
+        else if (Player.transform.position.x >= Lane1)
         {
             NextPos = Lane2;
             StartCoroutine("MoveCarRight");
@@ -56,12 +64,12 @@ public class PMRacing : MonoBehaviour {
 			StopAllCoroutines();
 			isMoving = false;
 		}
-		if (MonsterTruck.transform.position.x <= Lane2)
+		if (Player.transform.position.x <= Lane2)
         {
             NextPos = Lane1;
             StartCoroutine("MoveCarLeft");
         }
-        else if (MonsterTruck.transform.position.x <= Lane3)
+        else if (Player.transform.position.x <= Lane3)
         {
             NextPos = Lane2;
             StartCoroutine("MoveCarLeft");
@@ -76,33 +84,33 @@ public class PMRacing : MonoBehaviour {
     IEnumerator MoveCarRight()
     {
 		isMoving = true;
-        while (MonsterTruck.transform.position.x < NextPos)
+        while (Player.transform.position.x < NextPos)
         {
-            MonsterTruck.transform.Translate(xSpeed * Time.deltaTime, 0, 0);
+			Player.transform.Translate(xSpeed * Time.deltaTime, 0, 0);
 			cameraTransform.Translate(xSpeed * Time.deltaTime, 0, 0);
 
 			yield return null;
         }
 		cameraTransform.position = new Vector3(NextPos, cameraTransform.position.y, cameraTransform.position.z);
-		Vector3 tempVec = MonsterTruck.transform.position;
+		Vector3 tempVec = Player.transform.position;
 		tempVec.x = NextPos;
-		MonsterTruck.transform.position = tempVec;
+		Player.transform.position = tempVec;
 		isMoving = false;
 	}
 
     IEnumerator MoveCarLeft()
     {
 		isMoving = true;
-        while (MonsterTruck.transform.position.x > NextPos)
+        while (Player.transform.position.x > NextPos)
         {
-            MonsterTruck.transform.Translate(-xSpeed * Time.deltaTime, 0, 0);
+			Player.transform.Translate(-xSpeed * Time.deltaTime, 0, 0);
 			cameraTransform.Translate(-xSpeed * Time.deltaTime, 0, 0);
 			yield return null;
         }
 		cameraTransform.position = new Vector3(NextPos, cameraTransform.position.y, cameraTransform.position.z);
-		Vector3 tempVec = MonsterTruck.transform.position;
+		Vector3 tempVec = Player.transform.position;
 		tempVec.x = NextPos;
-		MonsterTruck.transform.position = tempVec;
+		Player.transform.position = tempVec;
 		isMoving = false;
 	}
 }

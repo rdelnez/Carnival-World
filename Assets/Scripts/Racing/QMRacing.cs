@@ -20,7 +20,7 @@ public class QMRacing : MonoBehaviour
 	Operators calcSymbol;
 	
 	private int num1, num2, maxValue, answer;
-	private string difficulty;
+	public string difficulty;
 	void Start()
 	{
 		GM_Script = GameObject.FindWithTag("GameManager").gameObject.GetComponent<GMRacing>();
