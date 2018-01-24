@@ -11,7 +11,8 @@ public class GMRacing : MonoBehaviour
 	public bool isQuestionStarted;
 	public QMRacing QM_Script;
 	public GerryCanManager GerryCan_Script;
-
+	public GameObject loadingScreen;
+	public GameObject loadingAnimation;
 
 	// public static GMRacing instance = null;
 
@@ -26,8 +27,11 @@ public class GMRacing : MonoBehaviour
 		//      Destroy(gameObject);
 		//  }
 		//  Setup();  
+
 		QM_Script = GameObject.FindWithTag("QuestionManager").gameObject.GetComponent<QMRacing>();
 		GerryCan_Script = GameObject.FindWithTag("GerryCanManager").gameObject.GetComponent<GerryCanManager>();
+		loadingScreen.SetActive(false);
+		loadingAnimation.SetActive(false);
 		isGerryCanAvailable = true;
 		isQuestionStarted = false;
 		lives = 5;

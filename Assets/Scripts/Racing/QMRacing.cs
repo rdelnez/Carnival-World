@@ -22,6 +22,7 @@ public class QMRacing : MonoBehaviour
 	private int num1, num2, maxValue, answer;
 	public string difficulty;
 	void Start()
+
 	{
 		GM_Script = GameObject.FindWithTag("GameManager").gameObject.GetComponent<GMRacing>();
 		isGameRunning = true;
@@ -32,6 +33,7 @@ public class QMRacing : MonoBehaviour
 		Operator.GetComponent<Image>();
 		difficulty = "Normal" /*SVM_Script.Instance.gameDifficulty*/;
 		StartQues();
+		
 
 	}
 
