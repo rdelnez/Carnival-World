@@ -16,12 +16,14 @@ public class GerryCanScript : MonoBehaviour {
 	public GerryCanManager GerryCan_Script;
 	public bool isGerryCanAvailable;
 	public QMRacing QM_Script;
+	public SoundManagerScript SM_Script;
 
 
 	// Use this for initialization
 	void Awake()
 	{
 		speedY = -6.0f;
+		SM_Script = GameObject.FindWithTag("SoundManager").gameObject.GetComponent<SoundManagerScript>();
 		GM_Script = GameObject.FindWithTag("GameManager").gameObject.GetComponent<GMRacing>();
 		GerryCan_Script = GameObject.FindWithTag("GerryCanManager").gameObject.GetComponent<GerryCanManager>();
 		QM_Script = GameObject.FindWithTag("QuestionManager").gameObject.GetComponent<QMRacing>();
@@ -72,9 +74,10 @@ public class GerryCanScript : MonoBehaviour {
 		Debug.Log("Collision2D");
 		if(collision.gameObject.tag == "Player")
 		{
-
-			if(GM_Script.isGerryCanAvailable == true)
+			SM_Script.Play_SFX("STEEL BARREL NO.1");
+			if (GM_Script.isGerryCanAvailable == true)
 			{
+				
 				Instantiate(smokeBubble, transform.localPosition, Quaternion.identity);
 				GM_Script.isGerryCanAvailable = false;
 				QM_Script.InvokeQuestion();

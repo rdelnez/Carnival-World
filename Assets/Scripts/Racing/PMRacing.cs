@@ -16,19 +16,21 @@ public class PMRacing : MonoBehaviour {
     public float Lane1;
     public float NextPos;
 	bool isMoving;
+	public SoundManagerScript SM_Script;
     // Use this for initialization
     void Start()
     {
+
 		PlayerSelector = 0;
 		xSpeed = 6f;
         Lane3 = 3.18f;
         Lane2 = 0f;
         Lane1 = -3.18f;
 		isMoving = false;
-
+		//SM_Script.Play_SFX("");
 		Player_Tranform = this.GetComponent<Transform>();
 		Player_SR = this.GetComponent<SpriteRenderer>();
-
+		SM_Script = GameObject.FindWithTag("SoundManager").gameObject.GetComponent<SoundManagerScript>();
 	}
 
     public void MoveRight()   

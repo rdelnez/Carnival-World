@@ -10,6 +10,7 @@ public class GMRacing : MonoBehaviour
 	public bool isGerryCanAvailable;
 	public bool isQuestionStarted;
 	public QMRacing QM_Script;
+	public SoundManagerScript SM_Script;
 	public GerryCanManager GerryCan_Script;
 	public GameObject loadingScreen;
 	public GameObject loadingAnimation;
@@ -29,6 +30,7 @@ public class GMRacing : MonoBehaviour
 		//  Setup();  
 
 		QM_Script = GameObject.FindWithTag("QuestionManager").gameObject.GetComponent<QMRacing>();
+		SM_Script = GameObject.FindWithTag("SoundManager").gameObject.GetComponent<SoundManagerScript>();
 		GerryCan_Script = GameObject.FindWithTag("GerryCanManager").gameObject.GetComponent<GerryCanManager>();
 		loadingScreen.SetActive(false);
 		loadingAnimation.SetActive(false);
@@ -47,6 +49,7 @@ public class GMRacing : MonoBehaviour
 
 	void Start()
 	{
+		//SM_Script.Play_SFX("coin");
 		// LeftNum1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + Random.Range(0, 10));
 		// RightNum1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("2D/Shared/NumberSprites/russ" + Random.Range(0, 10));
 		// Operator.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("2D/Shared/OperatorSprites/" + (Operators)Random.Range(1, 5));

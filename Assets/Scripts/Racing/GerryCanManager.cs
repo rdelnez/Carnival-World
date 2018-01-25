@@ -10,13 +10,13 @@ public class GerryCanManager : MonoBehaviour
 
 	public Object gerryCanPrefab;
 	public GameObject gerryCanGameObject;
-
+	public SoundManagerScript SM_Script;
 	public string difficulty;
 	public int currentAnswer, rand1, rand2;
 	// Use this for initialization
 	void Awake()
 	{
-
+		SM_Script = GameObject.FindWithTag("SoundManager").gameObject.GetComponent<SoundManagerScript>();
 		spawnPoints = new List<Vector3>();
 		spawnIndecies = new List<int>();
 		for(int x = 0; x < transform.childCount; x++)
@@ -81,6 +81,7 @@ public class GerryCanManager : MonoBehaviour
 		tempScript.ChangeGerryCanValue(tempValue);
 		if (isCorrect)
 		{
+			
 			tempScript.isCorrectAnswer = true;
 		}
 	}
