@@ -66,7 +66,20 @@ public class GerryCanManager : MonoBehaviour
 
 	IEnumerator RandFix()
 	{
-		while(rand1 == rand2)
+		if (currentAnswer == rand1)
+		{
+				Debug.Log("I AM WORKING");
+				rand1 = Random.Range(1, 9);
+		
+			yield return null;
+		}
+		if (currentAnswer == rand2)
+		{
+				Debug.Log("I AM WORKING");
+				rand2 = Random.Range(1, 9);
+			yield return null;
+		}
+		while (rand1 == rand2)
 		{
 			rand2 = Random.Range(1, 9);
 			yield return null;
